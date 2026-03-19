@@ -1,0 +1,54 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+      lang="de">
+
+<f:layout name="Default" />
+<f:asset.css identifier="uranusEventsCss" href="EXT:uranus_events/Resources/Public/Css/events.css" />
+
+<f:section name="MainContent">
+<div class="uranus-events">
+
+    <header class="ue-list-header">
+        <h1>Veranstaltungen</h1>
+        <f:if condition="{filter}">
+            <f:render partial="Event/FilterInfo" arguments="{filter: filter}" />
+        </f:if>
+    </header>
+
+    <f:if condition="{hasError}">
+        <f:then>
+            <div class="ue-alert ue-alert--error">
+                <p>{errorMessage}</p>
+                <f:if condition="{errorDetails}">
+                    <details>
+                        <summary>Technische Details</summary>
+                        <pre>{errorDetails}</pre>
+                    </details>
+                </f:if>
+            </div>
+        </f:then>
+        <f:else>
+            <f:if condition="{events}">
+                <f:then>
+                    <div class="events-list">
+                        <f:for each="{events}" as="event">
+                            <f:render partial="Event/Item" arguments="{event: event}" />
+                        </f:for>
+                    </div>
+                    <f:if condition="{pagination.hasMore}">
+                        <f:render partial="Event/Pagination" arguments="{pagination: pagination}" />
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <div class="ue-empty">
+                        <p>Keine Veranstaltungen gefunden.</p>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+
+</div>
+</f:section>
+
+</html>

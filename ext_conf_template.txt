@@ -1,0 +1,17 @@
+# cat=basic; type=string; label=API Base URL
+apiBaseUrl = https://uranus2.oklabflensburg.de
+
+# cat=basic; type=string; label=API Endpoint
+apiEndpoint = /api/events
+
+# cat=cache; type=int+; label=Cache Lifetime (seconds)
+cacheLifetime = 3600
+
+# cat=advanced; type=int+; label=HTTP Timeout (seconds)
+httpTimeout = 30
+
+# cat=advanced; type=int+; label=Max Retries
+maxRetries = 3
+
+# cat=debug; type=boolean; label=Debug Mode
+debugMode = 0

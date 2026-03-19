@@ -1,0 +1,97 @@
+# Setup for Uranus Events Extension
+
+plugin.tx_uranusevents {
+    view {
+        templateRootPaths {
+            0 = {$plugin.tx_uranusevents.view.templateRootPath}
+            10 = EXT:uranus_events/Resources/Private/Templates/
+        }
+        partialRootPaths {
+            0 = {$plugin.tx_uranusevents.view.partialRootPath}
+            10 = EXT:uranus_events/Resources/Private/Templates/Partial/
+        }
+        layoutRootPaths {
+            0 = {$plugin.tx_uranusevents.view.layoutRootPath}
+            10 = EXT:uranus_events/Resources/Private/Templates/Layouts/
+        }
+    }
+    
+    persistence {
+        storagePid = {$plugin.tx_uranusevents.persistence.storagePid}
+    }
+    
+    settings =< plugin.tx_uranusevents.settings
+    
+    features {
+        # skipDefaultArguments = 1
+        requireCHashArgumentForActionArguments = 0
+    }
+    
+    mvc {
+        callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+# Render custom CType directly as Extbase plugin (prevents missing theme template resolution)
+tt_content.uranusevents_events = EXTBASEPLUGIN
+tt_content.uranusevents_events {
+    extensionName = UranusEvents
+    pluginName = Events
+    vendorName = OklabFlensburg
+    settings < plugin.tx_uranusevents.settings
+}
+
+# Support list_type rendering as fallback
+tt_content.list.20.uranusevents_events = EXTBASEPLUGIN
+tt_content.list.20.uranusevents_events {
+    extensionName = UranusEvents
+    pluginName = Events
+    vendorName = OklabFlensburg
+    settings < plugin.tx_uranusevents.settings
+}
+
+# Include CSS and JavaScript
+page {
+    includeCSS {
+        uranusEvents = EXT:uranus_events/Resources/Public/Css/events.css
+    }
+    includeJSFooter {
+        uranusEvents = EXT:uranus_events/Resources/Public/JavaScript/events.js
+    }
+}
+
+# AJAX configuration for load more functionality
+uranusEventsAjax = PAGE
+uranusEventsAjax {
+    typeNum = 165432
+    
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type: text/html
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+        no_cache = 1
+    }
+    
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = UranusEvents
+        pluginName = Events
+        vendorName = OklabFlensburg
+        controller = Event
+        action = loadMore
+        settings =< plugin.tx_uranusevents.settings
+    }
+}
+
+# Add AJAX endpoint to page configuration
+config.tx_extbase.persistence.classes {
+    OklabFlensburg\UranusEvents\Domain\Model\Event {
+        mapping {
+            tableName = tt_content
+            recordType = Tx_UranusEvents_Event
+        }
+    }
+}

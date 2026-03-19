@@ -1,0 +1,56 @@
+{
+    "name": "oklabflensburg/uranus-events",
+    "type": "typo3-cms-extension",
+    "description": "TYPO3 Extension to display events from Uranus Public API",
+    "keywords": [
+        "TYPO3",
+        "extension",
+        "events",
+        "api",
+        "uranus"
+    ],
+    "homepage": "https://github.com/sndcds/uranus-events",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Ok Lab Flensburg",
+            "email": "info@oklabflensburg.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^14.1",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "typo3/testing-framework": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OklabFlensburg\\UranusEvents\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OklabFlensburg\\UranusEvents\\Tests\\": "Tests/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "uranus_events"
+        }
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin",
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "TYPO3\\CMS\\Composer\\Plugin\\ScriptDispatcher::postAutoloadDump"
+        ]
+    }
+}

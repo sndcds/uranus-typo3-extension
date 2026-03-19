@@ -1,0 +1,127 @@
+<article class="event-item" data-event-id="{event.id}">
+    <div class="event-image">
+        <f:if condition="{event.imagePath}">
+            <f:then>
+                <img src="{event.imagePath}" alt="{event.title}" loading="lazy" width="300" height="200">
+            </f:then>
+            <f:else>
+                <div class="event-image-placeholder">
+                    <span>Kein Bild</span>
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+    
+    <div class="event-content">
+        <header class="event-header">
+            <h2 class="event-title">
+                <f:link.page additionalParams="{uranus-event-id: event.id, uranus-event-date-id: event.eventDateId}">
+                    {event.title}
+                </f:link.page>
+            </h2>
+            
+            <f:if condition="{event.subtitle}">
+                <p class="event-subtitle">{event.subtitle}</p>
+            </f:if>
+        </header>
+        
+        <div class="event-meta">
+            <div class="event-date-time">
+                <span class="event-date">
+                    <f:format.date format="d.m.Y">{event.startDate}</f:format.date>
+                </span>
+                
+                <f:if condition="{event.startTime}">
+                    <span class="event-time">
+                        <f:format.date format="H:i">{event.startTime}</f:format.date> Uhr
+                    </span>
+                </f:if>
+            </div>
+            
+            <div class="event-venue">
+                <h3 class="venue-name">{event.venueName}</h3>
+                <address class="venue-address">
+                    <f:if condition="{event.venueStreet}">
+                        {event.venueStreet} {event.venueHouseNumber}<br>
+                    </f:if>
+                    <f:if condition="{event.venuePostalCode}">
+                        {event.venuePostalCode}
+                    </f:if>
+                    {event.venueCity}
+                    <f:if condition="{event.venueState}">
+                        , {event.venueState}
+                    </f:if>
+                    <br>
+                    <f:if condition="{event.venueCountry} == 'DEU'">
+                        Deutschland
+                    </f:if>
+                    <f:if condition="{event.venueCountry} == 'DNK'">
+                        Dänemark
+                    </f:if>
+                    <f:if condition="{event.venueCountry} == 'AUT'">
+                        Österreich
+                    </f:if>
+                </address>
+                
+                <f:if condition="{event.venueLat} && {event.venueLon}">
+                    <a href="https://maps.google.com/?q={event.venueLat},{event.venueLon}" 
+                       target="_blank" 
+                       class="venue-map-link">
+                        Auf Karte anzeigen
+                    </a>
+                </f:if>
+            </div>
+            
+            <f:if condition="{event.organizationName}">
+                <div class="event-organization">
+                    <span class="organization-name">{event.organizationName}</span>
+                </div>
+            </f:if>
+        </div>
+        
+        <div class="event-details">
+            <f:if condition="{event.eventTypes}">
+                <div class="event-types">
+                    <strong>Kategorien:</strong>
+                    <ul class="event-types-list">
+                        <f:for each="{event.eventTypes}" as="eventType">
+                            <li>{eventType.typeName}<f:if condition="{eventType.genreName}"> &ndash; {eventType.genreName}</f:if></li>
+                        </f:for>
+                    </ul>
+                </div>
+            </f:if>
+            
+            <f:if condition="{event.languages}">
+                <div class="event-languages">
+                    <strong>Sprachen:</strong>
+                    <span>{event.languages -> f:count()} Sprachen</span>
+                </div>
+            </f:if>
+            
+            <f:if condition="{event.tags}">
+                <div class="event-tags">
+                    <strong>Tags:</strong>
+                    <f:for each="{event.tags}" as="tag" iteration="tagIteration">
+                        <span class="tag">{tag}</span>
+                        <f:if condition="{tagIteration.isLast} == 0">, </f:if>
+                    </f:for>
+                </div>
+            </f:if>
+            
+            <f:if condition="{event.minAge}">
+                <div class="event-age">
+                    <strong>Altersbeschränkung:</strong>
+                    <span>ab {event.minAge} Jahren</span>
+                </div>
+            </f:if>
+            
+            <f:if condition="{event.releaseStatus}">
+                <div class="event-status">
+                    <span class="status-badge status-{event.releaseStatus}">
+                        {event.releaseStatus}
+                    </span>
+                </div>
+            </f:if>
+        </div>
+    </div>
+</article>

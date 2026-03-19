@@ -1,0 +1,40 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    
+  # Register all classes in the extension namespace
+  OklabFlensburg\UranusEvents\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+    
+  # Explicit service definitions for better control
+  OklabFlensburg\UranusEvents\Service\ApiClientService:
+    arguments:
+      $extensionConfiguration: '@TYPO3\CMS\Core\Configuration\ExtensionConfiguration'
+      
+  OklabFlensburg\UranusEvents\Service\EventService:
+    arguments:
+      $apiClient: '@OklabFlensburg\UranusEvents\Service\ApiClientService'
+      $cacheManager: '@TYPO3\CMS\Core\Cache\CacheManager'
+      $extensionConfiguration: '@TYPO3\CMS\Core\Configuration\ExtensionConfiguration'
+      
+  OklabFlensburg\UranusEvents\Service\LoggingService:
+    # No arguments needed, uses GeneralUtility::makeInstance
+      
+  OklabFlensburg\UranusEvents\Controller\EventController:
+    public: true
+    tags:
+      - name: controller.service_arguments
+      - name: controller
+          
+  # TYPO3 provides a PSR-3 logger service automatically
+  # We create logger instances directly in services
+      
+  # Cache configuration
+  OklabFlensburg\UranusEvents\Cache\EventCache:
+    class: TYPO3\CMS\Core\Cache\Frontend\VariableFrontend
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments:
+      $identifier: 'uranus_events'

@@ -1,0 +1,206 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <ROOT>
+        <type>array</type>
+        <el>
+            <settings.filter>
+                <TCEforms>
+                    <label>Filter-Einstellungen</label>
+                    <config>
+                        <type>array</type>
+                        <section>1</section>
+                        <el>
+                            <start>
+                                <TCEforms>
+                                    <label>Startdatum (YYYY-MM-DD)</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>20</size>
+                                        <eval>date</eval>
+                                        <placeholder>z.B. 2026-01-01</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </start>
+                            <end>
+                                <TCEforms>
+                                    <label>Enddatum (YYYY-MM-DD)</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>20</size>
+                                        <eval>date</eval>
+                                        <placeholder>z.B. 2026-12-31</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </end>
+                            <search>
+                                <TCEforms>
+                                    <label>Suchbegriff</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>50</size>
+                                        <placeholder>Volltextsuche in Titeln</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </search>
+                            <categories>
+                                <TCEforms>
+                                    <label>Kategorien (kommaseparierte IDs)</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>50</size>
+                                        <placeholder>z.B. 1,5,12</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </categories>
+                            <organizations>
+                                <TCEforms>
+                                    <label>Organisationen (kommaseparierte IDs)</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>50</size>
+                                        <placeholder>z.B. 9,15,22</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </organizations>
+                            <venues>
+                                <TCEforms>
+                                    <label>Veranstaltungsorte (kommaseparierte IDs)</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>50</size>
+                                        <placeholder>z.B. 52,78,103</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </venues>
+                            <city>
+                                <TCEforms>
+                                    <label>Stadt</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>30</size>
+                                        <placeholder>z.B. Flensburg</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </city>
+                            <countries>
+                                <TCEforms>
+                                    <label>Länder (ISO-3166-1-Alpha-3, kommasepariert)</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>30</size>
+                                        <placeholder>z.B. DEU,DNK,AUT</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </countries>
+                            <language>
+                                <TCEforms>
+                                    <label>Sprache</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>10</size>
+                                        <placeholder>z.B. de, en</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </language>
+                            <limit>
+                                <TCEforms>
+                                    <label>Anzahl Events pro Seite</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>5</size>
+                                        <eval>int</eval>
+                                        <default>20</default>
+                                        <range>
+                                            <lower>1</lower>
+                                            <upper>100</upper>
+                                        </range>
+                                    </config>
+                                </TCEforms>
+                            </limit>
+                            <past>
+                                <TCEforms>
+                                    <label>Vergangene Events anzeigen</label>
+                                    <config>
+                                        <type>check</type>
+                                        <default>0</default>
+                                    </config>
+                                </TCEforms>
+                            </past>
+                        </el>
+                    </config>
+                </TCEforms>
+            </settings.filter>
+            <settings.display>
+                <TCEforms>
+                    <label>Anzeige-Einstellungen</label>
+                    <config>
+                        <type>array</type>
+                        <section>1</section>
+                        <el>
+                            <showImages>
+                                <TCEforms>
+                                    <label>Bilder anzeigen</label>
+                                    <config>
+                                        <type>check</type>
+                                        <default>1</default>
+                                    </config>
+                                </TCEforms>
+                            </showImages>
+                            <showVenueMap>
+                                <TCEforms>
+                                    <label>Karten-Link anzeigen</label>
+                                    <config>
+                                        <type>check</type>
+                                        <default>1</default>
+                                    </config>
+                                </TCEforms>
+                            </showVenueMap>
+                            <showOrganization>
+                                <TCEforms>
+                                    <label>Organisation anzeigen</label>
+                                    <config>
+                                        <type>check</type>
+                                        <default>1</default>
+                                    </config>
+                                </TCEforms>
+                            </showOrganization>
+                            <showTags>
+                                <TCEforms>
+                                    <label>Tags anzeigen</label>
+                                    <config>
+                                        <type>check</type>
+                                        <default>1</default>
+                                    </config>
+                                </TCEforms>
+                            </showTags>
+                            <dateFormat>
+                                <TCEforms>
+                                    <label>Datumsformat</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>20</size>
+                                        <default>d.m.Y</default>
+                                        <placeholder>PHP date format</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </dateFormat>
+                            <timeFormat>
+                                <TCEforms>
+                                    <label>Zeitformat</label>
+                                    <config>
+                                        <type>input</type>
+                                        <size>10</size>
+                                        <default>H:i</default>
+                                        <placeholder>PHP time format</placeholder>
+                                    </config>
+                                </TCEforms>
+                            </timeFormat>
+                        </el>
+                    </config>
+                </TCEforms>
+            </settings.display>
+        </el>
+    </ROOT>
+</T3DataStructure>

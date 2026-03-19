@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4A6FA5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2E4A7A;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect x="2" y="2" width="60" height="60" rx="12" ry="12" fill="url(#gradient)" stroke="#1A2F4A" stroke-width="2"/>
+    <circle cx="32" cy="24" r="8" fill="#FFD166" stroke="#E6B850" stroke-width="1.5"/>
+    <path d="M20,40 L44,40 L44,48 L20,48 Z" fill="#EF476F" stroke="#D43A5E" stroke-width="1.5"/>
+    <path d="M28,32 L36,32 L36,40 L28,40 Z" fill="#06D6A0" stroke="#05B586" stroke-width="1.5"/>
+    <text x="32" y="58" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Uranus</text>
+</svg>

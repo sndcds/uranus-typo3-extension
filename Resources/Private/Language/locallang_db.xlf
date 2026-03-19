@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="messages" date="2026-03-19T12:35:33Z">
+        <header>
+            <generator>TYPO3 Extension Builder</generator>
+        </header>
+        <body>
+            <!-- Plugin Labels -->
+            <trans-unit id="tt_content.list_type.uranusevents_events" resname="tt_content.list_type.uranusevents_events">
+                <source>Uranus Events</source>
+            </trans-unit>
+            <trans-unit id="tt_content.CType.uranusevents_events" resname="tt_content.CType.uranusevents_events">
+                <source>Uranus Events</source>
+            </trans-unit>
+            
+            <!-- FlexForm Sections -->
+            <trans-unit id="flexforms.settings" resname="flexforms.settings">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexforms.filter" resname="flexforms.filter">
+                <source>Filter</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display" resname="flexforms.display">
+                <source>Display</source>
+            </trans-unit>
+            <trans-unit id="flexforms.cache" resname="flexforms.cache">
+                <source>Cache</source>
+            </trans-unit>
+            
+            <!-- FlexForm Fields -->
+            <trans-unit id="flexforms.settings.start" resname="flexforms.settings.start">
+                <source>Start date</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.start.description" resname="flexforms.settings.start.description">
+                <source>Filter events starting from this date (YYYY-MM-DD format)</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.end" resname="flexforms.settings.end">
+                <source>End date</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.end.description" resname="flexforms.settings.end.description">
+                <source>Filter events until this date (YYYY-MM-DD format)</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.search" resname="flexforms.settings.search">
+                <source>Search term</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.search.description" resname="flexforms.settings.search.description">
+                <source>Search in event titles and subtitles</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.categories" resname="flexforms.settings.categories">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.categories.description" resname="flexforms.settings.categories.description">
+                <source>Comma-separated category IDs</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.organizations" resname="flexforms.settings.organizations">
+                <source>Organizations</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.organizations.description" resname="flexforms.settings.organizations.description">
+                <source>Comma-separated organization IDs</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.venues" resname="flexforms.settings.venues">
+                <source>Venues</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.venues.description" resname="flexforms.settings.venues.description">
+                <source>Comma-separated venue IDs</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.city" resname="flexforms.settings.city">
+                <source>City</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.city.description" resname="flexforms.settings.city.description">
+                <source>Filter by city name</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.countries" resname="flexforms.settings.countries">
+                <source>Countries</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.countries.description" resname="flexforms.settings.countries.description">
+                <source>Comma-separated ISO 3166-1 alpha-3 country codes (e.g., DEU, DNK)</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.language" resname="flexforms.settings.language">
+                <source>Language</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.language.description" resname="flexforms.settings.language.description">
+                <source>Filter by language code</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.limit" resname="flexforms.settings.limit">
+                <source>Limit</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.limit.description" resname="flexforms.settings.limit.description">
+                <source>Number of events per page (default: 10)</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.offset" resname="flexforms.settings.offset">
+                <source>Offset</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.offset.description" resname="flexforms.settings.offset.description">
+                <source>Offset for pagination (default: 0)</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.event_types" resname="flexforms.settings.event_types">
+                <source>Event types</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.event_types.description" resname="flexforms.settings.event_types.description">
+                <source>JSON array of event types: [[type_id, genre_id], ...]</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.settings.include_past" resname="flexforms.settings.include_past">
+                <source>Include past events</source>
+            </trans-unit>
+            <trans-unit id="flexforms.settings.include_past.description" resname="flexforms.settings.include_past.description">
+                <source>Include events that have already passed</source>
+            </trans-unit>
+            
+            <!-- Display Settings -->
+            <trans-unit id="flexforms.display.show_images" resname="flexforms.display.show_images">
+                <source>Show images</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.show_images.description" resname="flexforms.display.show_images.description">
+                <source>Display event images if available</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.display.show_organization" resname="flexforms.display.show_organization">
+                <source>Show organization</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.show_organization.description" resname="flexforms.display.show_organization.description">
+                <source>Display organization name</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.display.show_categories" resname="flexforms.display.show_categories">
+                <source>Show categories</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.show_categories.description" resname="flexforms.display.show_categories.description">
+                <source>Display event categories</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.display.show_tags" resname="flexforms.display.show_tags">
+                <source>Show tags</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.show_tags.description" resname="flexforms.display.show_tags.description">
+                <source>Display event tags</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.display.show_age_restriction" resname="flexforms.display.show_age_restriction">
+                <source>Show age restriction</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.show_age_restriction.description" resname="flexforms.display.show_age_restriction.description">
+                <source>Display age restriction information</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.display.template" resname="flexforms.display.template">
+                <source>Template</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.template.description" resname="flexforms.display.template.description">
+                <source>Select the template to use for display</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.display.template.default" resname="flexforms.display.template.default">
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.template.compact" resname="flexforms.display.template.compact">
+                <source>Compact</source>
+            </trans-unit>
+            <trans-unit id="flexforms.display.template.detailed" resname="flexforms.display.template.detailed">
+                <source>Detailed</source>
+            </trans-unit>
+            
+            <!-- Cache Settings -->
+            <trans-unit id="flexforms.cache.cache_lifetime" resname="flexforms.cache.cache_lifetime">
+                <source>Cache lifetime</source>
+            </trans-unit>
+            <trans-unit id="flexforms.cache.cache_lifetime.description" resname="flexforms.cache.cache_lifetime.description">
+                <source>Cache lifetime in seconds (0 = use default, -1 = disable cache)</source>
+            </trans-unit>
+            
+            <trans-unit id="flexforms.cache.disable_cache" resname="flexforms.cache.disable_cache">
+                <source>Disable cache</source>
+            </trans-unit>
+            <trans-unit id="flexforms.cache.disable_cache.description" resname="flexforms.cache.disable_cache.description">
+                <source>Disable caching for this plugin (not recommended for production)</source>
+            </trans-unit>
+            
+            <!-- Extension Manager -->
+            <trans-unit id="em.conf.title" resname="em.conf.title">
+                <source>Uranus Events</source>
+            </trans-unit>
+            <trans-unit id="em.conf.description" resname="em.conf.description">
+                <source>Displays events from the Uranus API</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.category" resname="em.conf.category">
+                <source>Frontend Plugins</source>
+            </trans-unit>
+            
+            <!-- Extension Configuration -->
+            <trans-unit id="em.conf.api_base_url" resname="em.conf.api_base_url">
+                <source>API Base URL</source>
+            </trans-unit>
+            <trans-unit id="em.conf.api_base_url.description" resname="em.conf.api_base_url.description">
+                <source>Base URL for the Uranus API (e.g., https://api.example.com)</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.api_endpoint" resname="em.conf.api_endpoint">
+                <source>API Endpoint</source>
+            </trans-unit>
+            <trans-unit id="em.conf.api_endpoint.description" resname="em.conf.api_endpoint.description">
+                <source>Endpoint for events (default: /api/events)</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.api_timeout" resname="em.conf.api_timeout">
+                <source>API Timeout</source>
+            </trans-unit>
+            <trans-unit id="em.conf.api_timeout.description" resname="em.conf.api_timeout.description">
+                <source>Timeout for API requests in seconds (default: 10)</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.max_retries" resname="em.conf.max_retries">
+                <source>Max Retries</source>
+            </trans-unit>
+            <trans-unit id="em.conf.max_retries.description" resname="em.conf.max_retries.description">
+                <source>Maximum number of retry attempts for failed API calls (default: 3)</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.default_cache_lifetime" resname="em.conf.default_cache_lifetime">
+                <source>Default Cache Lifetime</source>
+            </trans-unit>
+            <trans-unit id="em.conf.default_cache_lifetime.description" resname="em.conf.default_cache_lifetime.description">
+                <source>Default cache lifetime in seconds (default: 3600 = 1 hour)</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.enable_logging" resname="em.conf.enable_logging">
+                <source>Enable Logging</source>
+            </trans-unit>
+            <trans-unit id="em.conf.enable_logging.description" resname="em.conf.enable_logging.description">
+                <source>Enable logging of API calls and errors</source>
+            </trans-unit>
+            
+            <trans-unit id="em.conf.log_level" resname="em.conf.log_level">
+                <source>Log Level</source>
+            </trans-unit>
+            <trans-unit id="em.conf.log_level.description" resname="em.conf.log_level.description">
+                <source>Log level for API logging (debug, info, warning, error)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

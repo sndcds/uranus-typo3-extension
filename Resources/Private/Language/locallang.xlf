@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="messages" date="2026-03-19T12:34:10Z">
+        <header>
+            <generator>TYPO3 Extension Builder</generator>
+        </header>
+        <body>
+            <!-- Frontend Labels -->
+            <trans-unit id="frontend.title" resname="frontend.title">
+                <source>Events from Uranus API</source>
+            </trans-unit>
+            <trans-unit id="frontend.no_events" resname="frontend.no_events">
+                <source>No events found.</source>
+            </trans-unit>
+            <trans-unit id="frontend.load_more" resname="frontend.load_more">
+                <source>Load more events</source>
+            </trans-unit>
+            <trans-unit id="frontend.loading" resname="frontend.loading">
+                <source>Loading...</source>
+            </trans-unit>
+            <trans-unit id="frontend.date" resname="frontend.date">
+                <source>Date</source>
+            </trans-unit>
+            <trans-unit id="frontend.time" resname="frontend.time">
+                <source>Time</source>
+            </trans-unit>
+            <trans-unit id="frontend.entry_time" resname="frontend.entry_time">
+                <source>Entry</source>
+            </trans-unit>
+            <trans-unit id="frontend.venue" resname="frontend.venue">
+                <source>Venue</source>
+            </trans-unit>
+            <trans-unit id="frontend.organization" resname="frontend.organization">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="frontend.categories" resname="frontend.categories">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="frontend.languages" resname="frontend.languages">
+                <source>Languages</source>
+            </trans-unit>
+            <trans-unit id="frontend.tags" resname="frontend.tags">
+                <source>Tags</source>
+            </trans-unit>
+            <trans-unit id="frontend.age_restriction" resname="frontend.age_restriction">
+                <source>Age restriction</source>
+            </trans-unit>
+            <trans-unit id="frontend.from_age" resname="frontend.from_age">
+                <source>from %s years</source>
+            </trans-unit>
+            <trans-unit id="frontend.to_age" resname="frontend.to_age">
+                <source>to %s years</source>
+            </trans-unit>
+            <trans-unit id="frontend.status" resname="frontend.status">
+                <source>Status</source>
+            </trans-unit>
+            <trans-unit id="frontend.status.released" resname="frontend.status.released">
+                <source>Released</source>
+            </trans-unit>
+            <trans-unit id="frontend.status.draft" resname="frontend.status.draft">
+                <source>Draft</source>
+            </trans-unit>
+            <trans-unit id="frontend.filter_info" resname="frontend.filter_info">
+                <source>Filtered by: %s</source>
+            </trans-unit>
+            <trans-unit id="frontend.api_error" resname="frontend.api_error">
+                <source>Events could not be loaded. Please try again later.</source>
+            </trans-unit>
+            
+            <!-- Plugin Labels -->
+            <trans-unit id="plugin.title" resname="plugin.title">
+                <source>Uranus Events</source>
+            </trans-unit>
+            <trans-unit id="plugin.description" resname="plugin.description">
+                <source>Displays events from the Uranus API</source>
+            </trans-unit>
+            
+            <!-- FlexForm Labels -->
+            <trans-unit id="flexform.settings" resname="flexform.settings">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.filter_settings" resname="flexform.filter_settings">
+                <source>Filter Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.start_date" resname="flexform.start_date">
+                <source>Start date (YYYY-MM-DD)</source>
+            </trans-unit>
+            <trans-unit id="flexform.end_date" resname="flexform.end_date">
+                <source>End date (YYYY-MM-DD)</source>
+            </trans-unit>
+            <trans-unit id="flexform.search_term" resname="flexform.search_term">
+                <source>Search term</source>
+            </trans-unit>
+            <trans-unit id="flexform.categories" resname="flexform.categories">
+                <source>Categories (comma-separated IDs)</source>
+            </trans-unit>
+            <trans-unit id="flexform.organizations" resname="flexform.organizations">
+                <source>Organizations (comma-separated IDs)</source>
+            </trans-unit>
+            <trans-unit id="flexform.venues" resname="flexform.venues">
+                <source>Venues (comma-separated IDs)</source>
+            </trans-unit>
+            <trans-unit id="flexform.city" resname="flexform.city">
+                <source>City</source>
+            </trans-unit>
+            <trans-unit id="flexform.countries" resname="flexform.countries">
+                <source>Countries (ISO codes, comma-separated)</source>
+            </trans-unit>
+            <trans-unit id="flexform.language" resname="flexform.language">
+                <source>Language code</source>
+            </trans-unit>
+            <trans-unit id="flexform.limit" resname="flexform.limit">
+                <source>Number of events per page</source>
+            </trans-unit>
+            <trans-unit id="flexform.offset" resname="flexform.offset">
+                <source>Offset (for pagination)</source>
+            </trans-unit>
+            <trans-unit id="flexform.event_types" resname="flexform.event_types">
+                <source>Event types (JSON array)</source>
+            </trans-unit>
+            <trans-unit id="flexform.include_past" resname="flexform.include_past">
+                <source>Include past events</source>
+            </trans-unit>
+            
+            <!-- Display Settings -->
+            <trans-unit id="flexform.display_settings" resname="flexform.display_settings">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.show_images" resname="flexform.show_images">
+                <source>Show images</source>
+            </trans-unit>
+            <trans-unit id="flexform.show_organization" resname="flexform.show_organization">
+                <source>Show organization</source>
+            </trans-unit>
+            <trans-unit id="flexform.show_categories" resname="flexform.show_categories">
+                <source>Show categories</source>
+            </trans-unit>
+            <trans-unit id="flexform.show_tags" resname="flexform.show_tags">
+                <source>Show tags</source>
+            </trans-unit>
+            <trans-unit id="flexform.show_age_restriction" resname="flexform.show_age_restriction">
+                <source>Show age restriction</source>
+            </trans-unit>
+            <trans-unit id="flexform.template" resname="flexform.template">
+                <source>Template</source>
+            </trans-unit>
+            <trans-unit id="flexform.template.default" resname="flexform.template.default">
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="flexform.template.compact" resname="flexform.template.compact">
+                <source>Compact</source>
+            </trans-unit>
+            <trans-unit id="flexform.template.detailed" resname="flexform.template.detailed">
+                <source>Detailed</source>
+            </trans-unit>
+            
+            <!-- Cache Settings -->
+            <trans-unit id="flexform.cache_settings" resname="flexform.cache_settings">
+                <source>Cache Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.cache_lifetime" resname="flexform.cache_lifetime">
+                <source>Cache lifetime (seconds)</source>
+            </trans-unit>
+            <trans-unit id="flexform.disable_cache" resname="flexform.disable_cache">
+                <source>Disable cache</source>
+            </trans-unit>
+            
+            <!-- Error Messages -->
+            <trans-unit id="error.api_unreachable" resname="error.api_unreachable">
+                <source>Uranus API is not reachable</source>
+            </trans-unit>
+            <trans-unit id="error.invalid_response" resname="error.invalid_response">
+                <source>Invalid response from Uranus API</source>
+            </trans-unit>
+            <trans-unit id="error.invalid_json" resname="error.invalid_json">
+                <source>Invalid JSON response from Uranus API</source>
+            </trans-unit>
+            <trans-unit id="error.timeout" resname="error.timeout">
+                <source>Request to Uranus API timed out</source>
+            </trans-unit>
+            <trans-unit id="error.rate_limit" resname="error.rate_limit">
+                <source>Rate limit exceeded for Uranus API</source>
+            </trans-unit>
+            
+            <!-- Log Messages -->
+            <trans-unit id="log.api_call" resname="log.api_call">
+                <source>Uranus API call: %s</source>
+            </trans-unit>
+            <trans-unit id="log.api_success" resname="log.api_success">
+                <source>Uranus API call successful: %d events loaded</source>
+            </trans-unit>
+            <trans-unit id="log.api_error" resname="log.api_error">
+                <source>Uranus API error: %s</source>
+            </trans-unit>
+            <trans-unit id="log.cache_hit" resname="log.cache_hit">
+                <source>Cache hit for Uranus events</source>
+            </trans-unit>
+            <trans-unit id="log.cache_miss" resname="log.cache_miss">
+                <source>Cache miss for Uranus events</source>
+            </trans-unit>
+            <trans-unit id="log.cache_cleared" resname="log.cache_cleared">
+                <source>Uranus events cache cleared</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

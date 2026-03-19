@@ -1,0 +1,44 @@
+# Constants for Uranus Events Extension
+
+plugin.tx_uranusevents {
+    view {
+        # Template root paths
+        templateRootPath = EXT:uranus_events/Resources/Private/Templates/
+        partialRootPath = EXT:uranus_events/Resources/Private/Templates/Partial/
+        layoutRootPath = EXT:uranus_events/Resources/Private/Templates/Layouts/
+    }
+    
+    persistence {
+        # Storage PID for records (not used for API data, but required by Extbase)
+        storagePid = 0
+    }
+    
+    settings {
+        # Default values for filter
+        limit = 20
+        past = 0
+        
+        # Display settings
+        showImages = 1
+        showVenueMap = 1
+        showOrganization = 1
+        showTags = 1
+        dateFormat = d.m.Y
+        timeFormat = H:i
+        
+        # Pagination settings
+        pagination {
+            maxPages = 10
+            showFirstLast = 1
+            showPrevNext = 1
+        }
+        
+        # Debug settings
+        debug = 0
+    }
+    
+    features {
+        # skipDefaultArguments = 1
+        requireCHashArgumentForActionArguments = 0
+    }
+}
