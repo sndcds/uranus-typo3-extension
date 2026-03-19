@@ -5,39 +5,51 @@ namespace OklabFlensburg\UranusEvents\Controller;
 
 use OklabFlensburg\UranusEvents\Domain\Dto\FilterParameters;
 use OklabFlensburg\UranusEvents\Service\EventService;
+use OklabFlensburg\UranusEvents\Service\LoggingService;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 class EventController extends ActionController
 {
     private EventService $eventService;
+    private LoggingService $logger;
     
-    public function __construct(EventService $eventService)
+    public function __construct(EventService $eventService, LoggingService $logger)
     {
         $this->eventService = $eventService;
+        $this->logger = $logger;
     }
     
     public function listAction(): ResponseInterface
     {
         $queryParams = $this->request->getQueryParams();
-        $globalGet = GeneralUtility::_GET();
+        $globalGet = is_array($_GET ?? null) ? $_GET : [];
+        $rawQueryParams = [];
+        parse_str((string)($_SERVER['QUERY_STRING'] ?? ''), $rawQueryParams);
 
         $eventId = (int)($queryParams['uranus-event-id']
             ?? $queryParams['uranus_event_id']
             ?? $globalGet['uranus-event-id']
             ?? $globalGet['uranus_event_id']
+            ?? $rawQueryParams['uranus-event-id']
+            ?? $rawQueryParams['uranus_event_id']
             ?? 0);
 
         $dateId = (int)($queryParams['uranus-event-date-id']
             ?? $queryParams['uranus_event_date_id']
             ?? $globalGet['uranus-event-date-id']
             ?? $globalGet['uranus_event_date_id']
+            ?? $rawQueryParams['uranus-event-date-id']
+            ?? $rawQueryParams['uranus_event_date_id']
             ?? 0);
 
         // Allow direct detail URLs like ?uranus-event-id=12&uranus-event-date-id=213
         if ($eventId > 0 && $dateId > 0) {
-            return $this->detailAction($eventId, $dateId);
+            return (new ForwardResponse('detail'))->withArguments([
+                'eventId' => $eventId,
+                'dateId' => $dateId,
+            ]);
         }
 
         try {
@@ -66,7 +78,7 @@ class EventController extends ActionController
             ]);
             
         } catch (\Exception $e) {
-            $this->logger->error('Failed to load events in EventController', [
+            $this->logger->logError('Failed to load events in EventController', [
                 'error' => $e->getMessage(),
                 'settings' => $this->settings,
                 'trace' => $e->getTraceAsString(),
@@ -127,7 +139,7 @@ class EventController extends ActionController
             ]);
             
         } catch (\Exception $e) {
-            $this->logger->error('Failed to load more events', [
+            $this->logger->logError('Failed to load more events', [
                 'error' => $e->getMessage(),
                 'offset' => $offset,
                 'lastEventDateId' => $lastEventDateId,
@@ -151,6 +163,13 @@ class EventController extends ActionController
     
     public function detailAction(int $eventId, int $dateId): ResponseInterface
     {
+        $this->assignDetailView($eventId, $dateId);
+
+        return $this->htmlResponse();
+    }
+
+    private function assignDetailView(int $eventId, int $dateId): void
+    {
         try {
             // Fetch event detail from API using the specific event and date ID
             $eventData = $this->eventService->getEventDetail($eventId, $dateId);
@@ -167,10 +186,10 @@ class EventController extends ActionController
                 'event' => $event,
                 'hasError' => false,
             ]);
-            
         } catch (\Exception $e) {
-            $this->logger->error('Failed to load event details', [
+            $this->logger->logError('Failed to load event details', [
                 'eventId' => $eventId,
+                'dateId' => $dateId,
                 'error' => $e->getMessage(),
             ]);
             
@@ -180,8 +199,6 @@ class EventController extends ActionController
                 'errorMessage' => 'Event-Details konnten nicht geladen werden.',
             ]);
         }
-        
-        return $this->htmlResponse();
     }
     
     private function createFilterFromSettings(): FilterParameters

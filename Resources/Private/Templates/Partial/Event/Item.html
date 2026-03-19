@@ -15,9 +15,9 @@
     <div class="event-content">
         <header class="event-header">
             <h2 class="event-title">
-                <f:link.page additionalParams="{uranus-event-id: event.id, uranus-event-date-id: event.eventDateId}">
+                <a href="/events/{event.id}/{event.eventDateId}">
                     {event.title}
-                </f:link.page>
+                </a>
             </h2>
             
             <f:if condition="{event.subtitle}">

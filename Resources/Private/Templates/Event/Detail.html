@@ -3,10 +3,23 @@
 <f:asset.css identifier="uranusEventsCss" href="EXT:uranus_events/Resources/Public/Css/events.css" />
 
 <f:section name="MainContent">
+<f:if condition="{hasError}">
+    <f:then>
+        <div class="uranus-event-detail ue-detail">
+            <a href="{f:uri.page()}" class="ue-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                Alle Veranstaltungen
+            </a>
+            <div class="ue-alert ue-alert--error">
+                <p>{errorMessage}</p>
+            </div>
+        </div>
+    </f:then>
+    <f:else>
 <div class="uranus-event-detail ue-detail">
 
     <!-- Back link -->
-    <a href="{f:uri.action(action: 'list')}" class="ue-back">
+    <a href="{f:uri.page()}" class="ue-back">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         Alle Veranstaltungen
     </a>
@@ -139,12 +152,12 @@
                     <ul class="ue-further-dates">
                         <f:for each="{event.furtherDates}" as="fd">
                             <li>
-                                <f:link.page additionalParams="{uranus-event-id: event.id, uranus-event-date-id: fd.id}">
+                                <a href="/events/{event.id}/{fd.id}">
                                     <span class="ue-further-dates__date">{fd.start_date}<f:if condition="{fd.start_time}"> &middot; {fd.start_time} Uhr</f:if></span>
                                     <f:if condition="{fd.venue_name}">
                                         <span class="ue-further-dates__venue">{fd.venue_name}<f:if condition="{fd.venue_city}">, {fd.venue_city}</f:if></span>
                                     </f:if>
-                                </f:link.page>
+                                </a>
                             </li>
                         </f:for>
                     </ul>
@@ -156,12 +169,14 @@
     </div>
 
     <!-- Bottom back link -->
-    <a href="{f:uri.action(action: 'list')}" class="ue-back ue-back--bottom">
+    <a href="{f:uri.page()}" class="ue-back ue-back--bottom">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         Alle Veranstaltungen
     </a>
 
 </div>
+    </f:else>
+</f:if>
 
 <f:asset.script identifier="uranusMap">
     document.addEventListener('DOMContentLoaded', function() {

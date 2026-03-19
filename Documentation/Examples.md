@@ -5,7 +5,7 @@
 Die Detailansicht kann direkt mit Query-Parametern aufgerufen werden:
 
 ```
-?uranus-event-id=12&uranus-event-date-id=213
+?uranus_event_id=12&uranus_event_date_id=213
 ```
 
 Für sprechende URLs kann in der Site-Konfiguration folgender RouteEnhancer ergänzt werden:
@@ -23,8 +23,8 @@ routeEnhancers:
             eventId: '[0-9]+'
             dateId: '[0-9]+'
         _arguments:
-            eventId: 'uranus-event-id'
-            dateId: 'uranus-event-date-id'
+            eventId: 'uranus_event_id'
+            dateId: 'uranus_event_date_id'
 ```
 
 Hinweise:
