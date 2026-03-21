@@ -1,0 +1,533 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      lang="en"
+      data-namespace-typo3-fluid="true">
+
+    <div class="uranus-configuration">
+        <h1>Uranus Events Configuration</h1>
+        
+        <f:flashMessages />
+        
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Tab Navigation -->
+                <ul class="nav nav-tabs" id="configurationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="api-tab" data-bs-toggle="tab" data-bs-target="#api" type="button" role="tab">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:tabs.api" default="API Settings" />
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="cache-tab" data-bs-toggle="tab" data-bs-target="#cache" type="button" role="tab">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:tabs.cache" default="Cache Settings" />
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="design-tab" data-bs-toggle="tab" data-bs-target="#design" type="button" role="tab">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:tabs.design" default="Design Settings" />
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="display-tab" data-bs-toggle="tab" data-bs-target="#display" type="button" role="tab">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:tabs.display" default="Display Settings" />
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="debug-tab" data-bs-toggle="tab" data-bs-target="#debug" type="button" role="tab">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:tabs.debug" default="Debug Settings" />
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Tab Content -->
+                <f:form action="save" name="configuration" id="configurationForm">
+                    <div class="tab-content mt-3" id="configurationTabsContent">
+                        
+                        <!-- API Settings Tab -->
+                        <div class="tab-pane fade show active" id="api" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <f:translate key="tabs.api" extensionName="uranus_events" />
+                                    </h5>
+                                    
+                                    <div class="mb-3">
+                                        <label for="apiBaseUrl" class="form-label">
+                                            <f:translate key="fields.apiBaseUrl" extensionName="uranus_events" />
+                                        </label>
+                                        <f:form.textfield
+                                            property="apiBaseUrl"
+                                            id="apiBaseUrl"
+                                            class="form-control"
+                                            value="{apiConfig.apiBaseUrl}"
+                                            placeholder="https://uranus2.oklabflensburg.de"
+                                        />
+                                        <div class="form-text">
+                                            <f:translate key="fields.apiBaseUrl.help" extensionName="uranus_events" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="apiEndpoint" class="form-label">
+                                            <f:translate key="fields.apiEndpoint" extensionName="uranus_events" />
+                                        </label>
+                                        <f:form.textfield
+                                            property="apiEndpoint"
+                                            id="apiEndpoint"
+                                            class="form-control"
+                                            value="{apiConfig.apiEndpoint}"
+                                            placeholder="/api/events"
+                                        />
+                                        <div class="form-text">
+                                            <f:translate key="fields.apiEndpoint.help" extensionName="uranus_events" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="httpTimeout" class="form-label">
+                                                    <f:translate key="fields.httpTimeout" extensionName="uranus_events" />
+                                                </label>
+                                                <f:form.textfield
+                                                    property="httpTimeout"
+                                                    id="httpTimeout"
+                                                    class="form-control"
+                                                    type="number"
+                                                    min="1"
+                                                    max="300"
+                                                    value="{apiConfig.httpTimeout}"
+                                                />
+                                                <div class="form-text">
+                                                    <f:translate key="fields.httpTimeout.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="maxRetries" class="form-label">
+                                                    <f:translate key="fields.maxRetries" extensionName="uranus_events" />
+                                                </label>
+                                                <f:form.textfield
+                                                    property="maxRetries"
+                                                    id="maxRetries"
+                                                    class="form-control"
+                                                    type="number"
+                                                    min="0"
+                                                    max="10"
+                                                    value="{apiConfig.maxRetries}"
+                                                />
+                                                <div class="form-text">
+                                                    <f:translate key="fields.maxRetries.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Cache Settings Tab -->
+                        <div class="tab-pane fade" id="cache" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <f:translate key="tabs.cache" extensionName="uranus_events" />
+                                    </h5>
+                                    
+                                    <div class="mb-3">
+                                        <label for="cacheLifetime" class="form-label">
+                                            <f:translate key="fields.cacheLifetime" extensionName="uranus_events" />
+                                        </label>
+                                        <f:form.textfield
+                                            property="cacheLifetime"
+                                            id="cacheLifetime"
+                                            class="form-control"
+                                            type="number"
+                                            min="0"
+                                            max="86400"
+                                            value="{cacheConfig.cacheLifetime}"
+                                        />
+                                        <div class="form-text">
+                                            <f:translate key="fields.cacheLifetime.help" extensionName="uranus_events" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Design Settings Tab -->
+                        <div class="tab-pane fade" id="design" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <f:translate key="tabs.design" extensionName="uranus_events" />
+                                    </h5>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="defaultPrimaryColor" class="form-label">
+                                                    <f:translate key="fields.defaultPrimaryColor" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="input-group">
+                                                    <f:form.textfield
+                                                        property="defaultPrimaryColor"
+                                                        id="defaultPrimaryColor"
+                                                        class="form-control color-picker"
+                                                        value="{designConfig.defaultPrimaryColor}"
+                                                    />
+                                                    <span class="input-group-text color-preview" 
+                                                          data-color-preview="defaultPrimaryColor">
+                                                    </span>
+                                                </div>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultPrimaryColor.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="defaultSecondaryColor" class="form-label">
+                                                    <f:translate key="fields.defaultSecondaryColor" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="input-group">
+                                                    <f:form.textfield
+                                                        property="defaultSecondaryColor"
+                                                        id="defaultSecondaryColor"
+                                                        class="form-control color-picker"
+                                                        value="{designConfig.defaultSecondaryColor}"
+                                                    />
+                                                    <span class="input-group-text color-preview" 
+                                                          data-color-preview="defaultSecondaryColor">
+                                                    </span>
+                                                </div>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultSecondaryColor.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="defaultAccentColor" class="form-label">
+                                                    <f:translate key="fields.defaultAccentColor" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="input-group">
+                                                    <f:form.textfield
+                                                        property="defaultAccentColor"
+                                                        id="defaultAccentColor"
+                                                        class="form-control color-picker"
+                                                        value="{designConfig.defaultAccentColor}"
+                                                    />
+                                                    <span class="input-group-text color-preview" 
+                                                          data-color-preview="defaultAccentColor">
+                                                    </span>
+                                                </div>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultAccentColor.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <label for="defaultFontFamily" class="form-label">
+                                                    <f:translate key="fields.defaultFontFamily" extensionName="uranus_events" />
+                                                </label>
+                                                <f:form.textfield
+                                                    property="defaultFontFamily"
+                                                    id="defaultFontFamily"
+                                                    class="form-control"
+                                                    value="{designConfig.defaultFontFamily}"
+                                                />
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultFontFamily.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="defaultBorderRadius" class="form-label">
+                                                    <f:translate key="fields.defaultBorderRadius" extensionName="uranus_events" />
+                                                </label>
+                                                <f:form.textfield
+                                                    property="defaultBorderRadius"
+                                                    id="defaultBorderRadius"
+                                                    class="form-control"
+                                                    type="number"
+                                                    min="0"
+                                                    max="50"
+                                                    value="{designConfig.defaultBorderRadius}"
+                                                />
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultBorderRadius.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Live Preview -->
+                                    <div class="mt-4">
+                                        <h6>
+                                            <f:translate key="labels.preview" extensionName="uranus_events" />
+                                        </h6>
+                                        <div class="preview-container p-3 border rounded">
+                                            <div id="previewStyles"></div>
+                                            <div class="uranus-event-card">
+                                                <h3 class="uranus-event-title">Sample Event Title</h3>
+                                                <div class="uranus-event-meta">
+                                                    <span class="uranus-event-date">01.01.2024 14:00</span> | 
+                                                    <span>Sample Location</span>
+                                                </div>
+                                                <div class="uranus-event-excerpt">
+                                                    This is a sample event description to preview the design settings.
+                                                </div>
+                                                <div class="uranus-tag">Music</div>
+                                                <div class="uranus-tag">Concert</div>
+                                                <button class="uranus-button mt-2">Read More</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Display Settings Tab -->
+                        <div class="tab-pane fade" id="display" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <f:translate key="tabs.display" extensionName="uranus_events" />
+                                    </h5>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="defaultDateFormat" class="form-label">
+                                                    <f:translate key="fields.defaultDateFormat" extensionName="uranus_events" />
+                                                </label>
+                                                <f:form.textfield
+                                                    property="defaultDateFormat"
+                                                    id="defaultDateFormat"
+                                                    class="form-control"
+                                                    value="{displayConfig.defaultDateFormat}"
+                                                />
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultDateFormat.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="defaultTimeFormat" class="form-label">
+                                                    <f:translate key="fields.defaultTimeFormat" extensionName="uranus_events" />
+                                                </label>
+                                                <f:form.textfield
+                                                    property="defaultTimeFormat"
+                                                    id="defaultTimeFormat"
+                                                    class="form-control"
+                                                    value="{displayConfig.defaultTimeFormat}"
+                                                />
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultTimeFormat.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="defaultEventsPerPage" class="form-label">
+                                            <f:translate key="fields.defaultEventsPerPage" extensionName="uranus_events" />
+                                        </label>
+                                        <f:form.textfield
+                                            property="defaultEventsPerPage"
+                                            id="defaultEventsPerPage"
+                                            class="form-control"
+                                            type="number"
+                                            min="1"
+                                            max="100"
+                                            value="{displayConfig.defaultEventsPerPage}"
+                                        />
+                                        <div class="form-text">
+                                            <f:translate key="fields.defaultEventsPerPage.help" extensionName="uranus_events" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <f:form.checkbox
+                                                    property="defaultShowImages"
+                                                    id="defaultShowImages"
+                                                    class="form-check-input"
+                                                    value="1"
+                                                    checked="{displayConfig.defaultShowImages}"
+                                                />
+                                                <label class="form-check-label" for="defaultShowImages">
+                                                    <f:translate key="fields.defaultShowImages" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultShowImages.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-check mb-3">
+                                                <f:form.checkbox
+                                                    property="defaultShowVenueMap"
+                                                    id="defaultShowVenueMap"
+                                                    class="form-check-input"
+                                                    value="1"
+                                                    checked="{displayConfig.defaultShowVenueMap}"
+                                                />
+                                                <label class="form-check-label" for="defaultShowVenueMap">
+                                                    <f:translate key="fields.defaultShowVenueMap" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultShowVenueMap.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-check mb-3">
+                                                <f:form.checkbox
+                                                    property="defaultShowOrganization"
+                                                    id="defaultShowOrganization"
+                                                    class="form-check-input"
+                                                    value="1"
+                                                    checked="{displayConfig.defaultShowOrganization}"
+                                                />
+                                                <label class="form-check-label" for="defaultShowOrganization">
+                                                    <f:translate key="fields.defaultShowOrganization" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultShowOrganization.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <f:form.checkbox
+                                                    property="defaultShowTags"
+                                                    id="defaultShowTags"
+                                                    class="form-check-input"
+                                                    value="1"
+                                                    checked="{displayConfig.defaultShowTags}"
+                                                />
+                                                <label class="form-check-label" for="defaultShowTags">
+                                                    <f:translate key="fields.defaultShowTags" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultShowTags.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-check mb-3">
+                                                <f:form.checkbox
+                                                    property="defaultShowExcerpt"
+                                                    id="defaultShowExcerpt"
+                                                    class="form-check-input"
+                                                    value="1"
+                                                    checked="{displayConfig.defaultShowExcerpt}"
+                                                />
+                                                <label class="form-check-label" for="defaultShowExcerpt">
+                                                    <f:translate key="fields.defaultShowExcerpt" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultShowExcerpt.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-check mb-3">
+                                                <f:form.checkbox
+                                                    property="defaultShowReadMoreLink"
+                                                    id="defaultShowReadMoreLink"
+                                                    class="form-check-input"
+                                                    value="1"
+                                                    checked="{displayConfig.defaultShowReadMoreLink}"
+                                                />
+                                                <label class="form-check-label" for="defaultShowReadMoreLink">
+                                                    <f:translate key="fields.defaultShowReadMoreLink" extensionName="uranus_events" />
+                                                </label>
+                                                <div class="form-text">
+                                                    <f:translate key="fields.defaultShowReadMoreLink.help" extensionName="uranus_events" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Debug Settings Tab -->
+                        <div class="tab-pane fade" id="debug" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <f:translate key="tabs.debug" extensionName="uranus_events" />
+                                    </h5>
+
+                                    <div class="form-check mb-3">
+                                        <f:form.checkbox
+                                            property="debugMode"
+                                            id="debugMode"
+                                            class="form-check-input"
+                                            value="1"
+                                            checked="{debugConfig.debugMode}"
+                                        />
+                                        <label class="form-check-label" for="debugMode">
+                                            <f:translate key="fields.debugMode" extensionName="uranus_events" />
+                                        </label>
+                                        <div class="form-text">
+                                            <f:translate key="fields.debugMode.help" extensionName="uranus_events" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:buttons.save" default="Save Configuration" />
+                        </button>
+                        <f:link.action action="reset" class="btn btn-outline-warning">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:buttons.reset" default="Reset to Defaults" />
+                        </f:link.action>
+                        <f:link.action action="export" class="btn btn-outline-secondary">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:buttons.export" default="Export Configuration" />
+                        </f:link.action>
+                    </div>
+                </f:form>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:buttons.import" default="Import Configuration" />
+                        </h5>
+                        <f:form action="import" name="import">
+                            <div class="mb-3">
+                                <f:form.textarea
+                                    property="json"
+                                    class="form-control"
+                                    rows="12"
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary w-100">
+                                <f:translate id="LLL:EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf:buttons.import" default="Import Configuration" />
+                            </button>
+                        </f:form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">JSON Export</h5>
+                        <pre class="small mb-0"><f:format.htmlentities>{exportData}</f:format.htmlentities></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

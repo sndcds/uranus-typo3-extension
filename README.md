@@ -161,13 +161,13 @@ Beispiel-Konfigurationen: `Documentation/Examples.md`
 
 ## Lizenz
 
-GNU General Public License v2 oder später
+MIT
 
 ## Support
 
 - Dokumentation: Siehe `Documentation/` Ordner
 - Issue Tracker: GitHub Repository
-- Email: support@oklab-flensburg.de
+- Email: info@oklabflensburg.de
 
 ## Credits
 

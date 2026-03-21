@@ -30,6 +30,11 @@ class EventType
         return $this->typeName;
     }
 
+    public function setTypeName(?string $name): void
+    {
+        $this->typeName = $name;
+    }
+
     public function getGenreId(): ?int
     {
         return $this->genreId;

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:uranus_events/Resources/Private/Language/locallang_mod_config.xlf">
+        <body>
+            <trans-unit id="mlang_tabs_tab" resname="mlang_tabs_tab">
+                <source>Configuration</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tablabel" resname="mlang_labels_tablabel">
+                <source>Configuration</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tabdescr" resname="mlang_labels_tabdescr">
+                <source>Configure Uranus Events settings</source>
+            </trans-unit>
+            <trans-unit id="module.title" resname="module.title">
+                <source>Uranus Events Configuration</source>
+            </trans-unit>
+            <trans-unit id="configuration.saved" resname="configuration.saved">
+                <source>Configuration saved successfully</source>
+            </trans-unit>
+            <trans-unit id="configuration.saved.title" resname="configuration.saved.title">
+                <source>Success</source>
+            </trans-unit>
+            <trans-unit id="configuration.error" resname="configuration.error">
+                <source>Error</source>
+            </trans-unit>
+            <trans-unit id="configuration.reset" resname="configuration.reset">
+                <source>Configuration reset to defaults</source>
+            </trans-unit>
+            <trans-unit id="configuration.reset.title" resname="configuration.reset.title">
+                <source>Reset Complete</source>
+            </trans-unit>
+            <trans-unit id="configuration.import.success" resname="configuration.import.success">
+                <source>Configuration imported successfully</source>
+            </trans-unit>
+            <trans-unit id="configuration.import.success.title" resname="configuration.import.success.title">
+                <source>Import Complete</source>
+            </trans-unit>
+            <trans-unit id="configuration.import.error" resname="configuration.import.error">
+                <source>Import Error</source>
+            </trans-unit>
+            <trans-unit id="configuration.import.empty" resname="configuration.import.empty">
+                <source>No configuration data provided</source>
+            </trans-unit>
+            <trans-unit id="tabs.general" resname="tabs.general">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="tabs.api" resname="tabs.api">
+                <source>API Settings</source>
+            </trans-unit>
+            <trans-unit id="tabs.cache" resname="tabs.cache">
+                <source>Cache Settings</source>
+            </trans-unit>
+            <trans-unit id="tabs.design" resname="tabs.design">
+                <source>Design Settings</source>
+            </trans-unit>
+            <trans-unit id="tabs.display" resname="tabs.display">
+                <source>Display Settings</source>
+            </trans-unit>
+            <trans-unit id="tabs.debug" resname="tabs.debug">
+                <source>Debug Settings</source>
+            </trans-unit>
+            <trans-unit id="buttons.save" resname="buttons.save">
+                <source>Save Configuration</source>
+            </trans-unit>
+            <trans-unit id="buttons.reset" resname="buttons.reset">
+                <source>Reset to Defaults</source>
+            </trans-unit>
+            <trans-unit id="buttons.export" resname="buttons.export">
+                <source>Export Configuration</source>
+            </trans-unit>
+            <trans-unit id="buttons.import" resname="buttons.import">
+                <source>Import Configuration</source>
+            </trans-unit>
+            <trans-unit id="labels.preview" resname="labels.preview">
+                <source>Live Preview</source>
+            </trans-unit>
+            <trans-unit id="labels.current" resname="labels.current">
+                <source>Current Value</source>
+            </trans-unit>
+            <trans-unit id="labels.default" resname="labels.default">
+                <source>Default Value</source>
+            </trans-unit>
+            <trans-unit id="fields.apiBaseUrl" resname="fields.apiBaseUrl">
+                <source>API Base URL</source>
+            </trans-unit>
+            <trans-unit id="fields.apiBaseUrl.help" resname="fields.apiBaseUrl.help">
+                <source>The base URL of the Uranus API</source>
+            </trans-unit>
+            <trans-unit id="fields.apiEndpoint" resname="fields.apiEndpoint">
+                <source>API Endpoint</source>
+            </trans-unit>
+            <trans-unit id="fields.apiEndpoint.help" resname="fields.apiEndpoint.help">
+                <source>The endpoint for events (e.g., /api/events)</source>
+            </trans-unit>
+            <trans-unit id="fields.cacheLifetime" resname="fields.cacheLifetime">
+                <source>Cache Lifetime (seconds)</source>
+            </trans-unit>
+            <trans-unit id="fields.cacheLifetime.help" resname="fields.cacheLifetime.help">
+                <source>How long to cache API responses (0-86400 seconds)</source>
+            </trans-unit>
+            <trans-unit id="fields.httpTimeout" resname="fields.httpTimeout">
+                <source>HTTP Timeout (seconds)</source>
+            </trans-unit>
+            <trans-unit id="fields.httpTimeout.help" resname="fields.httpTimeout.help">
+                <source>Timeout for API requests (1-300 seconds)</source>
+            </trans-unit>
+            <trans-unit id="fields.maxRetries" resname="fields.maxRetries">
+                <source>Max Retries</source>
+            </trans-unit>
+            <trans-unit id="fields.maxRetries.help" resname="fields.maxRetries.help">
+                <source>Maximum number of retry attempts (0-10)</source>
+            </trans-unit>
+            <trans-unit id="fields.debugMode" resname="fields.debugMode">
+                <source>Debug Mode</source>
+            </trans-unit>
+            <trans-unit id="fields.debugMode.help" resname="fields.debugMode.help">
+                <source>Enable debug logging and error display</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultPrimaryColor" resname="fields.defaultPrimaryColor">
+                <source>Primary Color</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultPrimaryColor.help" resname="fields.defaultPrimaryColor.help">
+                <source>Main brand color for buttons, links, and highlights</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultSecondaryColor" resname="fields.defaultSecondaryColor">
+                <source>Secondary Color</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultSecondaryColor.help" resname="fields.defaultSecondaryColor.help">
+                <source>Secondary color for text and backgrounds</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultAccentColor" resname="fields.defaultAccentColor">
+                <source>Accent Color</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultAccentColor.help" resname="fields.defaultAccentColor.help">
+                <source>Accent color for dates, highlights, and alerts</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultFontFamily" resname="fields.defaultFontFamily">
+                <source>Font Family</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultFontFamily.help" resname="fields.defaultFontFamily.help">
+                <source>CSS font family stack for event display</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultBorderRadius" resname="fields.defaultBorderRadius">
+                <source>Border Radius (px)</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultBorderRadius.help" resname="fields.defaultBorderRadius.help">
+                <source>Border radius for cards and buttons (0-50px)</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultDateFormat" resname="fields.defaultDateFormat">
+                <source>Date Format</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultDateFormat.help" resname="fields.defaultDateFormat.help">
+                <source>PHP date format for event dates (e.g., d.m.Y)</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultTimeFormat" resname="fields.defaultTimeFormat">
+                <source>Time Format</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultTimeFormat.help" resname="fields.defaultTimeFormat.help">
+                <source>PHP time format for event times (e.g., H:i)</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultEventsPerPage" resname="fields.defaultEventsPerPage">
+                <source>Events per Page</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultEventsPerPage.help" resname="fields.defaultEventsPerPage.help">
+                <source>Number of events to display per page (1-100)</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowImages" resname="fields.defaultShowImages">
+                <source>Show Images</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowImages.help" resname="fields.defaultShowImages.help">
+                <source>Display event images if available</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowVenueMap" resname="fields.defaultShowVenueMap">
+                <source>Show Venue Map</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowVenueMap.help" resname="fields.defaultShowVenueMap.help">
+                <source>Display map of event venue location</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowOrganization" resname="fields.defaultShowOrganization">
+                <source>Show Organization</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowOrganization.help" resname="fields.defaultShowOrganization.help">
+                <source>Display organizing organization information</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowTags" resname="fields.defaultShowTags">
+                <source>Show Tags</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowTags.help" resname="fields.defaultShowTags.help">
+                <source>Display event tags/categories</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowExcerpt" resname="fields.defaultShowExcerpt">
+                <source>Show Excerpt</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowExcerpt.help" resname="fields.defaultShowExcerpt.help">
+                <source>Display event description excerpt</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowReadMoreLink" resname="fields.defaultShowReadMoreLink">
+                <source>Show Read More Link</source>
+            </trans-unit>
+            <trans-unit id="fields.defaultShowReadMoreLink.help" resname="fields.defaultShowReadMoreLink.help">
+                <source>Display "Read More" link to full event details</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

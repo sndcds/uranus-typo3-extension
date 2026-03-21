@@ -15,3 +15,45 @@ maxRetries = 3
 
 # cat=debug; type=boolean; label=Debug Mode
 debugMode = 0
+
+# cat=design; type=string; label=Default Primary Color
+defaultPrimaryColor = #0066cc
+
+# cat=design; type=string; label=Default Secondary Color
+defaultSecondaryColor = #333333
+
+# cat=design; type=string; label=Default Accent Color
+defaultAccentColor = #ff6600
+
+# cat=design; type=string; label=Default Font Family
+defaultFontFamily = 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
+
+# cat=design; type=int+; label=Default Border Radius (px)
+defaultBorderRadius = 8
+
+# cat=display; type=string; label=Default Date Format
+defaultDateFormat = d.m.Y
+
+# cat=display; type=string; label=Default Time Format
+defaultTimeFormat = H:i
+
+# cat=display; type=int+; label=Default Events per Page
+defaultEventsPerPage = 20
+
+# cat=display; type=boolean; label=Default Show Images
+defaultShowImages = 1
+
+# cat=display; type=boolean; label=Default Show Venue Map
+defaultShowVenueMap = 1
+
+# cat=display; type=boolean; label=Default Show Organization
+defaultShowOrganization = 1
+
+# cat=display; type=boolean; label=Default Show Tags
+defaultShowTags = 1
+
+# cat=display; type=boolean; label=Default Show Excerpt
+defaultShowExcerpt = 1
+
+# cat=display; type=boolean; label=Default Show Read More Link
+defaultShowReadMoreLink = 1

@@ -23,7 +23,7 @@ plugin.tx_uranusevents {
     settings =< plugin.tx_uranusevents.settings
     
     features {
-        # skipDefaultArguments = 1
+        skipDefaultArguments = 1
         requireCHashArgumentForActionArguments = 0
     }
     

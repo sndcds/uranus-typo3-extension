@@ -3,192 +3,225 @@
 <f:asset.css identifier="uranusEventsCss" href="EXT:uranus_events/Resources/Public/Css/events.css" />
 
 <f:section name="MainContent">
-<f:if condition="{hasError}">
-    <f:then>
-        <div class="uranus-event-detail ue-detail">
-            <a href="{f:uri.page()}" class="ue-back">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-                Alle Veranstaltungen
-            </a>
-            <div class="ue-alert ue-alert--error">
-                <p>{errorMessage}</p>
+    <f:if condition="{hasError}">
+        <f:then>
+            <div class="uranus-event-detail ue-detail">
+                <a href="{f:uri.page()}" class="ue-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    Alle Veranstaltungen
+                </a>
+                <div class="ue-alert ue-alert--error">
+                    <p>{errorMessage}</p>
+                </div>
             </div>
-        </div>
-    </f:then>
-    <f:else>
-<div class="uranus-event-detail ue-detail">
+        </f:then>
+        <f:else>
+            <div class="uranus-event-detail ue-detail">
 
-    <!-- Back link -->
-    <a href="{f:uri.page()}" class="ue-back">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-        Alle Veranstaltungen
-    </a>
+                <!-- Back link -->
+                <a href="{f:uri.page()}" class="ue-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    Alle Veranstaltungen
+                </a>
 
-    <div class="ue-detail__layout">
+                <div class="ue-detail__layout">
 
-        <!-- Main content column -->
-        <div class="ue-detail__main">
+                    <!-- Main content column -->
+                    <div class="ue-detail__main">
 
-            <!-- Hero image -->
-            <f:if condition="{event.imagePath}">
-                <div class="ue-detail__hero">
-                    <img src="{event.imagePath}" alt="{event.title}">
-                </div>
-                <f:if condition="{event.imageCopyright}">
-                    <p class="ue-detail__img-credit">
-                        &copy; {event.imageCopyright}
-                        <f:if condition="{event.imageCreator}"> &middot; {event.imageCreator}</f:if>
-                        <f:if condition="{event.imageLicenseName}"> &middot; {event.imageLicenseName}</f:if>
-                    </p>
-                </f:if>
-            </f:if>
-
-            <!-- Organisation -->
-            <f:if condition="{event.organizationName}">
-                <div class="ue-detail__org">{event.organizationName}</div>
-            </f:if>
-
-            <h1 class="ue-detail__title">{event.title}</h1>
-
-            <f:if condition="{event.subtitle}">
-                <p class="ue-detail__subtitle">{event.subtitle}</p>
-            </f:if>
-
-            <!-- Category chips -->
-            <f:if condition="{event.eventTypes}">
-                <div class="ue-detail__cats">
-                    <f:for each="{event.eventTypes}" as="type">
-                        <span class="ue-badge ue-badge--accent">
-                            {type.typeName}<f:if condition="{type.genreName}"> &ndash; {type.genreName}</f:if>
-                        </span>
-                    </f:for>
-                </div>
-            </f:if>
-
-            <!-- Description -->
-            <f:if condition="{event.description}">
-                <div class="ue-detail__description">
-                    {event.description -> f:format.nl2br()}
-                </div>
-            </f:if>
-
-        </div>
-
-        <!-- Sidebar column -->
-        <aside class="ue-detail__sidebar">
-
-            <!-- Date and time card -->
-            <div class="ue-sidebar-card">
-                <p class="ue-sidebar-card__title">Datum &amp; Uhrzeit</p>
-                <dl class="ue-dl">
-                    <dt>Datum</dt>
-                    <dd><time datetime="{event.startDate -> f:format.date(format: 'Y-m-d')}">{event.startDate -> f:format.date(format: 'j. F Y')}</time></dd>
-
-                    <f:if condition="{event.startTime}">
-                        <dt>Beginn</dt>
-                        <dd>{event.startTime} Uhr</dd>
-                    </f:if>
-
-                    <f:if condition="{event.entryTime}">
-                        <dt>Einlass</dt>
-                        <dd>{event.entryTime} Uhr</dd>
-                    </f:if>
-
-                    <f:if condition="{event.priceType}">
-                        <dt>Preis</dt>
-                        <dd>{event.priceType}</dd>
-                    </f:if>
-
-                    <f:if condition="{event.minAge}">
-                        <dt>Alter</dt>
-                        <dd>ab {event.minAge}<f:if condition="{event.maxAge}">&ndash;{event.maxAge}</f:if> J.</dd>
-                    </f:if>
-
-                    <f:if condition="{event.languages}">
-                        <dt>Sprache</dt>
-                        <dd>
-                            <f:for each="{event.languages}" as="lang" iteration="it">
-                                {lang}<f:if condition="{it.isLast} == 0">, </f:if>
-                            </f:for>
-                        </dd>
-                    </f:if>
-                </dl>
-            </div>
-
-            <!-- Venue card -->
-            <f:if condition="{event.venueName}">
-                <div class="ue-sidebar-card">
-                    <p class="ue-sidebar-card__title">Veranstaltungsort</p>
-                    <dl class="ue-dl">
-                        <dt>Ort</dt>
-                        <dd>{event.venueName}</dd>
-                        <f:if condition="{event.venueStreet}">
-                            <dt>Adresse</dt>
-                            <dd>{event.venueStreet}<f:if condition="{event.venueHouseNumber}"> {event.venueHouseNumber}</f:if></dd>
+                        <!-- Hero image -->
+                        <f:if condition="{event.imagePath}">
+                            <div class="ue-detail__hero">
+                                <img src="{event.imagePath}?width=800&height=600" alt="{event.title}">
+                            </div>
+                            <f:if condition="{event.imageCopyright}">
+                                <p class="ue-detail__img-credit">
+                                    &copy; {event.imageCopyright}
+                                    <f:if condition="{event.imageCreator}"> &middot; {event.imageCreator}</f:if>
+                                    <f:if condition="{event.imageLicenseName}"> &middot; {event.imageLicenseName}</f:if>
+                                </p>
+                            </f:if>
                         </f:if>
-                        <f:if condition="{event.venueCity}">
-                            <dt>Stadt</dt>
-                            <dd><f:if condition="{event.venuePostalCode}">{event.venuePostalCode} </f:if>{event.venueCity}</dd>
-                        </f:if>
-                    </dl>
 
-                    <f:if condition="{event.venueLat}">
-                        <div class="ue-map-wrap" id="uranus-map"
-                             data-lat="{event.venueLat}"
-                             data-lon="{event.venueLon}"
-                             data-name="{event.venueName}">
+                        <!-- Organisation -->
+                        <f:if condition="{event.organizationName}">
+                            <div class="ue-detail__org">{event.organizationName}</div>
+                        </f:if>
+
+                        <h1 class="ue-detail__title">{event.title}</h1>
+
+                        <f:if condition="{event.subtitle}">
+                            <p class="ue-detail__subtitle">{event.subtitle}</p>
+                        </f:if>
+
+                        <!-- Category chips -->
+                        <f:if condition="{event.categories}">
+                            <div class="ue-detail__cats">
+                                <f:for each="{event.categories}" as="category">
+                                    <span class="ue-badge ue-badge--muted">{category}</span>
+                                </f:for>
+                            </div>
+                        </f:if>
+
+                        <f:if condition="{event.eventTypes}">
+                            <div class="ue-detail__cats">
+                                <f:for each="{event.eventTypes}" as="type">
+                                    <span class="ue-badge ue-badge--accent">
+                                        {type.typeName}<f:if condition="{type.genreName}"> &ndash; {type.genreName}
+                                        </f:if>
+                                    </span>
+                                </f:for>
+                            </div>
+                        </f:if>
+
+                        <!-- Description -->
+                        <f:if condition="{event.description}">
+                            <div class="ue-detail__description">
+                                {event.description -> f:format.nl2br()}
+                            </div>
+                        </f:if>
+
+                    </div>
+
+                    <!-- Sidebar column -->
+                    <aside class="ue-detail__sidebar">
+
+                        <!-- Date and time card -->
+                        <div class="ue-sidebar-card">
+                            <p class="ue-sidebar-card__title">Datum &amp; Uhrzeit</p>
+                            <dl class="ue-dl">
+                                <dt>Datum</dt>
+                                <dd><time
+                                        datetime="{event.startDate -> f:format.date(format: 'Y-m-d')}">{event.startDate
+                                        -> f:format.date(format: 'j. F Y')}</time></dd>
+
+                                <f:if condition="{event.startTime}">
+                                    <dt>Beginn</dt>
+                                    <dd>{event.startTime} Uhr</dd>
+                                </f:if>
+
+                                <f:if condition="{event.entryTime}">
+                                    <dt>Einlass</dt>
+                                    <dd>{event.entryTime} Uhr</dd>
+                                </f:if>
+
+                                <f:if condition="{event.priceType}">
+                                    <dt>Preis</dt>
+                                    <dd>{event.priceType}</dd>
+                                </f:if>
+
+                                <f:if condition="{event.minAge}">
+                                    <dt>Alter</dt>
+                                    <dd>ab {event.minAge}<f:if condition="{event.maxAge}">&ndash;{event.maxAge}</f:if>
+                                        J.</dd>
+                                </f:if>
+
+                                <f:if condition="{event.languages}">
+                                    <dt>Sprache</dt>
+                                    <dd>
+                                        <f:for each="{event.languages}" as="lang" iteration="it">
+                                            {lang}<f:if condition="{it.isLast} == 0">, </f:if>
+                                        </f:for>
+                                    </dd>
+                                </f:if>
+                            </dl>
                         </div>
-                        <a class="ue-map-link"
-                           href="https://www.openstreetmap.org/?mlat={event.venueLat}&amp;mlon={event.venueLon}#map=15/{event.venueLat}/{event.venueLon}"
-                           target="_blank" rel="noopener">In OpenStreetMap &ouml;ffnen &#8599;</a>
-                    </f:if>
-                </div>
-            </f:if>
 
-            <!-- Further dates card -->
-            <f:if condition="{event.furtherDates}">
-                <div class="ue-sidebar-card">
-                    <p class="ue-sidebar-card__title">Weitere Termine</p>
-                    <ul class="ue-further-dates">
-                        <f:for each="{event.furtherDates}" as="fd">
-                            <li>
-                                <a href="/events/{event.id}/{fd.id}">
-                                    <span class="ue-further-dates__date">{fd.start_date}<f:if condition="{fd.start_time}"> &middot; {fd.start_time} Uhr</f:if></span>
-                                    <f:if condition="{fd.venue_name}">
-                                        <span class="ue-further-dates__venue">{fd.venue_name}<f:if condition="{fd.venue_city}">, {fd.venue_city}</f:if></span>
+                        <!-- Venue card -->
+                        <f:if condition="{event.venueName} || {event.venueCity}">
+                            <div class="ue-sidebar-card">
+                                <p class="ue-sidebar-card__title">Veranstaltungsort</p>
+                                <dl class="ue-dl">
+                                    <dt>Ort</dt>
+                                    <dd>{event.venueName}</dd>
+                                    <f:if condition="{event.venueStreet}">
+                                        <dt>Adresse</dt>
+                                        <dd>{event.venueStreet}<f:if condition="{event.venueHouseNumber}">
+                                                {event.venueHouseNumber}</f:if>
+                                        </dd>
                                     </f:if>
-                                </a>
-                            </li>
-                        </f:for>
-                    </ul>
+                                    <f:if condition="{event.venueCity}">
+                                        <dt>Stadt</dt>
+                                        <dd>
+                                            <f:if condition="{event.venuePostalCode}">{event.venuePostalCode} </f:if>
+                                            {event.venueCity}
+                                        </dd>
+                                    </f:if>
+                                </dl>
+
+                                <f:if condition="{event.venueLat}">
+                                    <div class="ue-map-wrap" id="uranus-map" data-lat="{event.venueLat}"
+                                        data-lon="{event.venueLon}" data-name="{event.venueName}">
+                                    </div>
+                                    <a class="ue-map-link"
+                                        href="https://www.openstreetmap.org/?mlat={event.venueLat}&amp;mlon={event.venueLon}#map=15/{event.venueLat}/{event.venueLon}"
+                                        target="_blank" rel="noopener">In OpenStreetMap &ouml;ffnen &#8599;</a>
+                                </f:if>
+                            </div>
+                        </f:if>
+
+                        <!-- Further dates card -->
+                        <f:if condition="{event.furtherDates}">
+                            <div class="ue-sidebar-card">
+                                <p class="ue-sidebar-card__title">Weitere Termine</p>
+                                <ul class="ue-further-dates">
+                                    <f:for each="{event.furtherDates}" as="fd">
+                                        <li>
+                                            <f:link.action action="detail"
+                                                arguments="{eventId: event.id, dateId: fd.id}">
+                                                <span class="ue-further-dates__date">{fd.start_date}<f:if
+                                                        condition="{fd.start_time}"> &middot; {fd.start_time} Uhr</f:if>
+                                                    </span>
+                                                <f:if condition="{fd.venue_name}">
+                                                    <span class="ue-further-dates__venue">{fd.venue_name}<f:if
+                                                            condition="{fd.venue_city}">, {fd.venue_city}</f:if></span>
+                                                </f:if>
+                                            </f:link.action>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </div>
+                        </f:if>
+                    </aside>
                 </div>
-            </f:if>
 
-        </aside>
+                <!-- Bottom back link -->
+                <a href="{f:uri.page()}" class="ue-back ue-back--bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    Alle Veranstaltungen
+                </a>
 
-    </div>
+            </div>
+        </f:else>
+    </f:if>
 
-    <!-- Bottom back link -->
-    <a href="{f:uri.page()}" class="ue-back ue-back--bottom">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-        Alle Veranstaltungen
-    </a>
-
-</div>
-    </f:else>
-</f:if>
-
-<f:asset.script identifier="uranusMap">
-    document.addEventListener('DOMContentLoaded', function() {
+    <f:asset.script identifier="uranusMap">
+        document.addEventListener('DOMContentLoaded', function() {
         var el = document.getElementById('uranus-map');
         if (!el) return;
         var lat = parseFloat(el.dataset.lat);
         var lon = parseFloat(el.dataset.lon);
         if (!lat || !lon) return;
         el.style.height = '200px';
-        el.innerHTML = '<iframe title="Karte des Veranstaltungsorts" width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=' + (lon-0.01) + ',' + (lat-0.01) + ',' + (lon+0.01) + ',' + (lat+0.01) + '&layer=mapnik&marker=' + lat + ',' + lon + '" style="border:0;border-radius:6px;display:block"></iframe>';
-    });
-</f:asset.script>
+        el.innerHTML = '<iframe title="Karte des Veranstaltungsorts" width="100%" height="200" frameborder="0"
+            scrolling="no" marginheight="0" marginwidth="0"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=' + (lon-0.01) + ',' + (lat-0.01) + ',' + (lon+0.01) + ',' + (lat+0.01) + '&layer=mapnik&marker=' + lat + ',' + lon + '"
+            style="border:0;border-radius:6px;display:block"></iframe>';
+        });
+    </f:asset.script>
 
 </f:section>
+
 </html>

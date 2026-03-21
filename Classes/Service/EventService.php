@@ -7,7 +7,6 @@ use OklabFlensburg\UranusEvents\Domain\Dto\FilterParameters;
 use OklabFlensburg\UranusEvents\Domain\Model\EventResponse;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,19 +18,22 @@ class EventService
     private int $cacheLifetime;
     private Logger $logger;
     private bool $debugMode;
+    private ConfigurationService $configurationService;
     
     public function __construct(
         ApiClientService $apiClient,
         CacheManager $cacheManager,
-        ExtensionConfiguration $extensionConfiguration
+        ConfigurationService $configurationService
     ) {
         $this->apiClient = $apiClient;
         $this->cache = $cacheManager->getCache('uranus_events');
+        $this->configurationService = $configurationService;
         
         // Create logger instance directly
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
         
-        $config = $extensionConfiguration->get('uranus_events');
+        // Get configuration
+        $config = $this->configurationService->getMergedConfiguration();
         $this->cacheLifetime = (int)($config['cacheLifetime'] ?? 3600);
         $this->debugMode = (bool)($config['debugMode'] ?? false);
     }
@@ -156,6 +158,10 @@ class EventService
         }
         foreach ($event->getEventTypes() as $eventType) {
             $typeId = (string)$eventType->getTypeId();
+            if ($eventType->getTypeName() === null) {
+                $typeName = $lookup[$typeId]['name'] ?? null;
+                $eventType->setTypeName($typeName);
+            }
             $genreId = $eventType->getGenreId();
             if ($genreId !== null && $genreId > 0) {
                 $genreName = $lookup[$typeId]['genres'][(string)$genreId] ?? null;

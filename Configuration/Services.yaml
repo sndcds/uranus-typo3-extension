@@ -10,15 +10,26 @@ services:
     exclude: '../Classes/Domain/Model/*'
     
   # Explicit service definitions for better control
-  OklabFlensburg\UranusEvents\Service\ApiClientService:
+  OklabFlensburg\UranusEvents\Service\ConfigurationService:
     arguments:
       $extensionConfiguration: '@TYPO3\CMS\Core\Configuration\ExtensionConfiguration'
+      $registry: '@TYPO3\CMS\Core\Registry'
+      $configurationManager: '@TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface'
+      $typoScriptService: '@TYPO3\CMS\Core\TypoScript\TypoScriptService'
+      
+  OklabFlensburg\UranusEvents\Service\CssGeneratorService:
+    arguments:
+      $configurationService: '@OklabFlensburg\UranusEvents\Service\ConfigurationService'
+      
+  OklabFlensburg\UranusEvents\Service\ApiClientService:
+    arguments:
+      $configurationService: '@OklabFlensburg\UranusEvents\Service\ConfigurationService'
       
   OklabFlensburg\UranusEvents\Service\EventService:
     arguments:
       $apiClient: '@OklabFlensburg\UranusEvents\Service\ApiClientService'
       $cacheManager: '@TYPO3\CMS\Core\Cache\CacheManager'
-      $extensionConfiguration: '@TYPO3\CMS\Core\Configuration\ExtensionConfiguration'
+      $configurationService: '@OklabFlensburg\UranusEvents\Service\ConfigurationService'
       
   OklabFlensburg\UranusEvents\Service\LoggingService:
     # No arguments needed, uses GeneralUtility::makeInstance
@@ -28,6 +39,17 @@ services:
     tags:
       - name: controller.service_arguments
       - name: controller
+      
+  OklabFlensburg\UranusEvents\Controller\Backend\ConfigurationController:
+    public: true
+    tags:
+      - name: controller.service_arguments
+      - name: controller
+    arguments:
+      $configurationService: '@OklabFlensburg\UranusEvents\Service\ConfigurationService'
+      $cssGeneratorService: '@OklabFlensburg\UranusEvents\Service\CssGeneratorService'
+      $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'
+      $flashMessageService: '@TYPO3\CMS\Core\Messaging\FlashMessageService'
           
   # TYPO3 provides a PSR-3 logger service automatically
   # We create logger instances directly in services

@@ -31,6 +31,8 @@ class Event
     private ?string $imageLicenseName;
     private int $organizationId;
     private string $organizationName;
+    /** @var array<int>|null */
+    private ?array $categories = null;
     /** @var array<EventType> */
     private array $eventTypes = [];
     /** @var array<string>|null */
@@ -98,6 +100,11 @@ class Event
         // Organization
         $event->organizationId = (int)($data['organization_id'] ?? 0);
         $event->organizationName = (string)($data['organization_name'] ?? '');
+
+        // Categories from the list API are numeric IDs and are distinct from event_types.
+        $event->categories = isset($data['categories']) && is_array($data['categories'])
+            ? array_values(array_map('intval', $data['categories']))
+            : null;
 
         // Event types
         if (isset($data['event_types']) && is_array($data['event_types'])) {
@@ -252,6 +259,12 @@ class Event
     public function getOrganizationName(): string
     {
         return $this->organizationName;
+    }
+
+    /** @return array<int>|null */
+    public function getCategories(): ?array
+    {
+        return $this->categories;
     }
 
     /** @return array<EventType> */

@@ -2,7 +2,7 @@
     <div class="event-image">
         <f:if condition="{event.imagePath}">
             <f:then>
-                <img src="{event.imagePath}" alt="{event.title}" loading="lazy" width="300" height="200">
+                <img src="{event.imagePath}?width=300&height=200" alt="{event.title}" loading="lazy" width="300" height="200">
             </f:then>
             <f:else>
                 <div class="event-image-placeholder">
@@ -15,9 +15,9 @@
     <div class="event-content">
         <header class="event-header">
             <h2 class="event-title">
-                <a href="/events/{event.id}/{event.eventDateId}">
+                <f:link.action action="detail" arguments="{eventId: event.id, dateId: event.eventDateId}">
                     {event.title}
-                </a>
+                </f:link.action>
             </h2>
             
             <f:if condition="{event.subtitle}">
@@ -62,14 +62,6 @@
                         Österreich
                     </f:if>
                 </address>
-                
-                <f:if condition="{event.venueLat} && {event.venueLon}">
-                    <a href="https://maps.google.com/?q={event.venueLat},{event.venueLon}" 
-                       target="_blank" 
-                       class="venue-map-link">
-                        Auf Karte anzeigen
-                    </a>
-                </f:if>
             </div>
             
             <f:if condition="{event.organizationName}">
@@ -80,9 +72,20 @@
         </div>
         
         <div class="event-details">
+            <f:if condition="{event.categories}">
+                <div class="event-types">
+                    <strong>Kategorien:</strong> 
+                    <span>
+                        <f:for each="{event.categories}" as="category" iteration="categoryIteration">
+                            {category}<f:if condition="{categoryIteration.isLast} == 0">, </f:if>
+                        </f:for>
+                    </span>
+                </div>
+            </f:if>
+
             <f:if condition="{event.eventTypes}">
                 <div class="event-types">
-                    <strong>Kategorien:</strong>
+                    <strong>Eventtypen:</strong> 
                     <ul class="event-types-list">
                         <f:for each="{event.eventTypes}" as="eventType">
                             <li>{eventType.typeName}<f:if condition="{eventType.genreName}"> &ndash; {eventType.genreName}</f:if></li>
@@ -94,7 +97,11 @@
             <f:if condition="{event.languages}">
                 <div class="event-languages">
                     <strong>Sprachen:</strong>
-                    <span>{event.languages -> f:count()} Sprachen</span>
+                    <span>
+                        <f:for each="{event.languages}" as="language" iteration="languageIteration">
+                            {language}<f:if condition="{languageIteration.isLast} == 0">, </f:if>
+                        </f:for>
+                    </span>
                 </div>
             </f:if>
             
@@ -124,4 +131,11 @@
             </f:if>
         </div>
     </div>
+    
+    <!-- Debug output (remove in production) -->
+    <f:if condition="{settings.debug}">
+        <div style="background:#f0f0f0;padding:10px;margin-top:10px;font-size:12px;border:1px dashed #ccc;">
+            <strong>Debug eventTypes:</strong> {event.eventTypes -> f:debug()}
+        </div>
+    </f:if>
 </article>

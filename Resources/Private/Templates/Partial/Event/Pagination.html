@@ -1,6 +1,9 @@
 <nav class="events-pagination" aria-label="Event-Navigation">
     <p class="pagination-info">
-        Seite {pagination.currentPage} von {pagination.totalPages}
+        <f:if condition="{pagination.hasKnownTotal}">
+            <f:then>Seite {pagination.currentPage} von {pagination.totalPages}</f:then>
+            <f:else>Seite {pagination.currentPage}</f:else>
+        </f:if>
     </p>
 
     <f:if condition="{pagination.hasMore}">

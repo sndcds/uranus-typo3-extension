@@ -7,7 +7,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Log\LogManager;
 
@@ -20,11 +19,16 @@ class ApiClientService
     private int $maxRetries;
     private LoggerInterface $logger;
     private bool $debugMode;
+    private ConfigurationService $configurationService;
     
     public function __construct(
-        ExtensionConfiguration $extensionConfiguration
+        ConfigurationService $configurationService
     ) {
-        $config = $extensionConfiguration->get('uranus_events');
+        $this->configurationService = $configurationService;
+        
+        // Get configuration with plugin settings (if any)
+        $config = $this->configurationService->getMergedConfiguration();
+        
         $this->baseUrl = rtrim($config['apiBaseUrl'] ?? 'https://uranus2.oklabflensburg.de', '/');
         $this->endpoint = $config['apiEndpoint'] ?? '/api/events';
         $this->timeout = (int)($config['httpTimeout'] ?? 30);

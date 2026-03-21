@@ -6,6 +6,8 @@ namespace OklabFlensburg\UranusEvents\Controller;
 use OklabFlensburg\UranusEvents\Domain\Dto\FilterParameters;
 use OklabFlensburg\UranusEvents\Service\EventService;
 use OklabFlensburg\UranusEvents\Service\LoggingService;
+use OklabFlensburg\UranusEvents\Service\ConfigurationService;
+use OklabFlensburg\UranusEvents\Service\CssGeneratorService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -14,11 +16,19 @@ class EventController extends ActionController
 {
     private EventService $eventService;
     private LoggingService $logger;
+    private ConfigurationService $configurationService;
+    private CssGeneratorService $cssGeneratorService;
     
-    public function __construct(EventService $eventService, LoggingService $logger)
-    {
+    public function __construct(
+        EventService $eventService, 
+        LoggingService $logger,
+        ConfigurationService $configurationService,
+        CssGeneratorService $cssGeneratorService
+    ) {
         $this->eventService = $eventService;
         $this->logger = $logger;
+        $this->configurationService = $configurationService;
+        $this->cssGeneratorService = $cssGeneratorService;
     }
     
     public function listAction(): ResponseInterface
@@ -60,6 +70,10 @@ class EventController extends ActionController
                 $this->eventService->enrichEventWithLookup($event);
             }
 
+            // Get configuration for frontend
+            $configuration = $this->configurationService->getMergedConfiguration($this->settings);
+            $css = $this->cssGeneratorService->getCssForInclusion();
+            
             $this->view->assignMultiple([
                 'events' => $eventResponse->getEvents(),
                 'pagination' => [
@@ -70,11 +84,14 @@ class EventController extends ActionController
                     'lastEventStartAt' => $eventResponse->getLastEventStartAt(),
                     'currentPage' => $eventResponse->getCurrentPage(),
                     'totalPages' => $eventResponse->getTotalPages(),
+                    'hasKnownTotal' => $eventResponse->hasKnownTotal(),
                     'hasMore' => $eventResponse->hasMore(),
                 ],
                 'filter' => $filter,
                 'hasError' => false,
                 'errorMessage' => null,
+                'configuration' => $configuration,
+                'dynamicCss' => $css,
             ]);
             
         } catch (\Exception $e) {
@@ -92,6 +109,7 @@ class EventController extends ActionController
                     'offset' => 0,
                     'currentPage' => 1,
                     'totalPages' => 1,
+                    'hasKnownTotal' => false,
                     'hasMore' => false,
                 ],
                 'filter' => null,
@@ -132,6 +150,9 @@ class EventController extends ActionController
                     'offset' => $eventResponse->getOffset(),
                     'lastEventDateId' => $eventResponse->getLastEventDateId(),
                     'lastEventStartAt' => $eventResponse->getLastEventStartAt(),
+                    'currentPage' => $eventResponse->getCurrentPage(),
+                    'totalPages' => $eventResponse->getTotalPages(),
+                    'hasKnownTotal' => $eventResponse->hasKnownTotal(),
                     'hasMore' => $eventResponse->hasMore(),
                 ],
                 'filter' => $filter,
