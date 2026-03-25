@@ -1,0 +1,15 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+      lang="de">
+
+<div class="events-list">
+    <f:for each="{events}" as="event">
+        <f:render partial="Event/Item" arguments="{event: event}" />
+    </f:for>
+</div>
+
+<f:if condition="{pagination.hasMore}">
+    <f:render partial="Event/Pagination" arguments="{pagination: pagination}" />
+</f:if>
+
+</html>

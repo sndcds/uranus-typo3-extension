@@ -1,73 +1,28 @@
-<div class="filter-info">
-    <h3>Aktive Filter</h3>
-    <dl class="filter-list">
-        <f:if condition="{filter.start}">
-            <dt>Startdatum:</dt>
-            <dd>{filter.start -> f:format.date(format: 'd.m.Y')}</dd>
-        </f:if>
-        
-        <f:if condition="{filter.end}">
-            <dt>Enddatum:</dt>
-            <dd>{filter.end -> f:format.date(format: 'd.m.Y')}</dd>
-        </f:if>
-        
+<div class="filter-info" aria-label="Aktive Filter">
+    <p class="filter-info__label">Aktive Filter</p>
+    <div class="filter-list">
         <f:if condition="{filter.search}">
-            <dt>Suchbegriff:</dt>
-            <dd>{filter.search}</dd>
+            <span class="filter-chip">Titel: {filter.search}</span>
         </f:if>
-        
+
         <f:if condition="{filter.city}">
-            <dt>Stadt:</dt>
-            <dd>{filter.city}</dd>
+            <span class="filter-chip">Stadt: {filter.city}</span>
         </f:if>
-        
-        <f:if condition="{filter.countries}">
-            <dt>Länder:</dt>
-            <dd>
-                <f:for each="{filter.countries}" as="country" iteration="countryIteration">
-                    <f:if condition="{country} == 'DEU'">Deutschland</f:if>
-                    <f:if condition="{country} == 'DNK'">Dänemark</f:if>
-                    <f:if condition="{country} == 'AUT'">Österreich</f:if>
-                    <f:if condition="{country} == 'CHE'">Schweiz</f:if>
-                    <f:if condition="{country} == 'NLD'">Niederlande</f:if>
-                    <f:if condition="{country} == 'BEL'">Belgien</f:if>
-                    <f:if condition="{country} == 'LUX'">Luxemburg</f:if>
-                    <f:if condition="{country} == 'FRA'">Frankreich</f:if>
-                    <f:if condition="{country} == 'POL'">Polen</f:if>
-                    <f:if condition="{country} == 'CZE'">Tschechien</f:if>
-                    <f:if condition="{countryIteration.isLast} == 0">, </f:if>
-                </f:for>
-            </dd>
+
+        <f:if condition="{filter.start}">
+            <span class="filter-chip">Ab: {filter.start -> f:format.date(format: 'd.m.Y')}</span>
         </f:if>
-        
+
+        <f:if condition="{filter.end}">
+            <span class="filter-chip">Bis: {filter.end -> f:format.date(format: 'd.m.Y')}</span>
+        </f:if>
+
         <f:if condition="{filter.language}">
-            <dt>Sprache:</dt>
-            <dd>{filter.language}</dd>
+            <span class="filter-chip">Sprache: {filter.language}</span>
         </f:if>
-        
-        <f:if condition="{filter.categories}">
-            <dt>Kategorien:</dt>
-            <dd>
-                <f:for each="{filter.categories}" as="category" iteration="categoryIteration">
-                    {category}
-                    <f:if condition="{categoryIteration.isLast} == 0">, </f:if>
-                </f:for>
-            </dd>
+
+        <f:if condition="{filter.past}">
+            <span class="filter-chip">Vergangene Events</span>
         </f:if>
-        
-        <f:if condition="{filter.organizations}">
-            <dt>Organisationen:</dt>
-            <dd>
-                <f:for each="{filter.organizations}" as="organization" iteration="orgIteration">
-                    {organization}
-                    <f:if condition="{orgIteration.isLast} == 0">, </f:if>
-                </f:for>
-            </dd>
-        </f:if>
-        
-        <f:if condition="{filter.limit} != 20">
-            <dt>Events pro Seite:</dt>
-            <dd>{filter.limit}</dd>
-        </f:if>
-    </dl>
+    </div>
 </div>

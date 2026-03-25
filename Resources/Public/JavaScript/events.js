@@ -26,10 +26,15 @@
         const loadMoreButtons = document.querySelectorAll('.load-more-button');
         
         loadMoreButtons.forEach(button => {
+            if (button.dataset.ueBound === '1') {
+                return;
+            }
+
+            button.dataset.ueBound = '1';
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                const button = e.target;
+                const button = e.currentTarget;
                 const lastEventDateId = button.dataset.lastEventDateId;
                 const lastEventStartAt = button.dataset.lastEventStartAt;
                 const offset = parseInt(button.dataset.offset) || 0;
@@ -84,6 +89,7 @@
         
         // Add AJAX flag
         params.set('ajax', '1');
+        params.set('type', '165432');
         
         return baseUrl + '?' + params.toString();
     }
@@ -108,9 +114,7 @@
                 // Update pagination
                 const oldPagination = document.querySelector('.events-pagination');
                 if (newPagination && oldPagination) {
-                    oldPagination.innerHTML = newPagination.innerHTML;
-                    
-                    // Re-initialize load more buttons
+                    oldPagination.replaceWith(newPagination);
                     initLoadMore();
                 } else if (newPagination && !oldPagination) {
                     // Add pagination if it didn't exist before
@@ -171,7 +175,7 @@
                 
                 const eventLink = this.querySelector('.event-title a');
                 if (eventLink) {
-                    window.open(eventLink.href, '_blank');
+                    window.location.href = eventLink.href;
                 }
             });
         });

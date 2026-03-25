@@ -160,6 +160,159 @@ a:hover {
   font-size: 1rem;
 }
 
+.ue-results-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--ue-accent-soft);
+  color: var(--ue-accent-strong);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+/* ---------------------------------------------------------
+   Filter
+   --------------------------------------------------------- */
+.ue-filter,
+.filter-info {
+  background:
+    radial-gradient(circle at top right, rgba(61, 136, 207, 0.16), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid var(--ue-border);
+  border-radius: var(--ue-radius-lg);
+  box-shadow: var(--ue-shadow-sm);
+}
+
+.ue-filter {
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+}
+
+.ue-filter__top,
+.ue-filter__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.ue-filter__top {
+  margin-bottom: 1rem;
+}
+
+.ue-filter__eyebrow,
+.filter-info__label {
+  margin: 0 0 0.35rem;
+  color: var(--ue-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ue-filter__title {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  line-height: 1.2;
+  color: var(--ue-accent-strong);
+}
+
+.ue-filter__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ue-filter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: var(--ue-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.ue-filter__field input,
+.ue-filter__field select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--ue-border);
+  border-radius: var(--ue-radius-sm);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ue-text);
+  font: inherit;
+  transition:
+    border-color var(--ue-transition),
+    box-shadow var(--ue-transition),
+    background var(--ue-transition);
+}
+
+.ue-filter__field input:focus,
+.ue-filter__field select:focus {
+  outline: none;
+  border-color: rgba(11, 92, 171, 0.45);
+  box-shadow: 0 0 0 4px rgba(11, 92, 171, 0.12);
+  background: #fff;
+}
+
+.ue-filter__field input::placeholder {
+  color: var(--ue-text-soft);
+}
+
+.ue-filter__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ue-border);
+  border-radius: var(--ue-radius-sm);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ue-text);
+  font-weight: 700;
+}
+
+.ue-filter__toggle input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  accent-color: var(--ue-accent);
+}
+
+.ue-btn--compact {
+  min-height: 2.5rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+}
+
+.filter-info {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.95rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--ue-border);
+  color: var(--ue-text);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 /* ---------------------------------------------------------
    Grid cards
    --------------------------------------------------------- */
@@ -628,7 +781,17 @@ a:hover {
 .ue-pagination {
   margin-top: 2.25rem;
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pagination-info {
+  margin: 0;
+  color: var(--ue-text-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .ue-btn {
@@ -894,6 +1057,11 @@ a:hover {
     margin-bottom: 1.25rem;
   }
 
+  .ue-filter,
+  .filter-info {
+    padding: 1rem;
+  }
+
   .ue-list-header h1 {
     font-size: 1.75rem;
   }
@@ -912,7 +1080,11 @@ a:hover {
   }
 
   .ue-pagination {
-    display: block;
+    display: grid;
+  }
+
+  .ue-filter__toggle {
+    width: 100%;
   }
 }
 

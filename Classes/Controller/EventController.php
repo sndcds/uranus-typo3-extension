@@ -88,6 +88,7 @@ class EventController extends ActionController
                     'hasMore' => $eventResponse->hasMore(),
                 ],
                 'filter' => $filter,
+                'hasActiveFilters' => $this->hasActiveFilters($filter),
                 'hasError' => false,
                 'errorMessage' => null,
                 'configuration' => $configuration,
@@ -113,6 +114,7 @@ class EventController extends ActionController
                     'hasMore' => false,
                 ],
                 'filter' => null,
+                'hasActiveFilters' => false,
                 'hasError' => true,
                 'errorMessage' => 'Events konnten nicht geladen werden. Bitte versuchen Sie es später erneut.',
                 'errorDetails' => $this->shouldShowErrorDetails() ? $e->getMessage() : null,
@@ -156,6 +158,7 @@ class EventController extends ActionController
                     'hasMore' => $eventResponse->hasMore(),
                 ],
                 'filter' => $filter,
+                'hasActiveFilters' => $this->hasActiveFilters($filter),
                 'hasError' => false,
             ]);
             
@@ -169,6 +172,7 @@ class EventController extends ActionController
             
             $this->view->assignMultiple([
                 'events' => [],
+                'hasActiveFilters' => false,
                 'hasError' => true,
                 'errorMessage' => 'Weitere Events konnten nicht geladen werden.',
             ]);
@@ -225,6 +229,7 @@ class EventController extends ActionController
     private function createFilterFromSettings(): FilterParameters
     {
         $filterData = [];
+        $requestArguments = $this->getFrontendRequestArguments();
         
         // Map plugin settings to filter parameters
         if (!empty($this->settings['start'])) {
@@ -267,25 +272,95 @@ class EventController extends ActionController
         // Set limit from settings or default
         $filterData['limit'] = (int)($this->settings['limit'] ?? 20);
         
+        $this->applyFrontendFilterOverrides($filterData, $requestArguments);
+
         // Handle pagination from request
-        $queryParams = $this->request->getQueryParams();
-        $filterData['offset'] = (int)($queryParams['offset'] ?? 0);
+        $filterData['offset'] = (int)($requestArguments['offset'] ?? 0);
         
         // Handle Uranus-specific pagination
-        if (!empty($queryParams['last_event_date_id'])) {
-            $filterData['last_event_date_id'] = (int)$queryParams['last_event_date_id'];
+        if (!empty($requestArguments['last_event_date_id'])) {
+            $filterData['last_event_date_id'] = (int)$requestArguments['last_event_date_id'];
         }
         
-        if (!empty($queryParams['last_event_start_at'])) {
-            $filterData['last_event_start_at'] = $queryParams['last_event_start_at'];
+        if (!empty($requestArguments['last_event_start_at'])) {
+            $filterData['last_event_start_at'] = $requestArguments['last_event_start_at'];
         }
         
         // Past events
         if (isset($this->settings['past']) && $this->settings['past']) {
             $filterData['past'] = true;
         }
+
+        if (array_key_exists('past', $requestArguments)) {
+            $filterData['past'] = $this->parseBooleanValue($requestArguments['past']);
+        }
         
         return new FilterParameters($filterData);
+    }
+
+    private function getFrontendRequestArguments(): array
+    {
+        $queryParams = $this->request->getQueryParams();
+        $pluginArguments = $queryParams['tx_uranusevents_events'] ?? [];
+
+        if (!is_array($pluginArguments)) {
+            $pluginArguments = [];
+        }
+
+        return array_merge($queryParams, $pluginArguments);
+    }
+
+    private function applyFrontendFilterOverrides(array &$filterData, array $queryParams): void
+    {
+        foreach (['start', 'end', 'search', 'city', 'language'] as $field) {
+            if (!array_key_exists($field, $queryParams)) {
+                continue;
+            }
+
+            $value = trim((string)$queryParams[$field]);
+            if ($value !== '') {
+                $filterData[$field] = $value;
+            } else {
+                unset($filterData[$field]);
+            }
+        }
+
+        foreach (['categories', 'organizations', 'venues', 'countries'] as $field) {
+            if (!array_key_exists($field, $queryParams)) {
+                continue;
+            }
+
+            $value = $queryParams[$field];
+            if ($value === '' || $value === []) {
+                unset($filterData[$field]);
+                continue;
+            }
+
+            $filterData[$field] = $value;
+        }
+    }
+
+    private function parseBooleanValue(mixed $value): bool
+    {
+        if (is_bool($value)) {
+            return $value;
+        }
+
+        return in_array(
+            strtolower((string)$value),
+            ['1', 'true', 'on', 'yes'],
+            true
+        );
+    }
+
+    private function hasActiveFilters(FilterParameters $filter): bool
+    {
+        return $filter->getSearch() !== null && trim($filter->getSearch()) !== ''
+            || $filter->getCity() !== null && trim($filter->getCity()) !== ''
+            || $filter->getStart() !== null
+            || $filter->getEnd() !== null
+            || $filter->getLanguage() !== null && trim($filter->getLanguage()) !== ''
+            || $filter->isPast();
     }
     
     private function shouldShowErrorDetails(): bool

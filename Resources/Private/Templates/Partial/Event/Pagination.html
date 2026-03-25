@@ -1,4 +1,4 @@
-<nav class="events-pagination" aria-label="Event-Navigation">
+<nav class="events-pagination ue-pagination" aria-label="Event-Navigation">
     <p class="pagination-info">
         <f:if condition="{pagination.hasKnownTotal}">
             <f:then>Seite {pagination.currentPage} von {pagination.totalPages}</f:then>
@@ -8,11 +8,11 @@
 
     <f:if condition="{pagination.hasMore}">
         <div class="pagination-load-more">
-            <button class="load-more-button"
+            <button class="load-more-button ue-btn"
                     data-last-event-date-id="{pagination.lastEventDateId}"
                     data-last-event-start-at="{pagination.lastEventStartAt -> f:format.date(format: 'c')}"
                     data-limit="{pagination.limit}"
-                    data-offset="{pagination.offset}">
+                    data-offset="{pagination.offset + pagination.limit}">
                 Mehr Events laden
             </button>
         </div>

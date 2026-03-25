@@ -9,11 +9,89 @@
 <div class="uranus-events">
 
     <header class="ue-list-header">
-        <h1>Veranstaltungen</h1>
-        <f:if condition="{filter}">
-            <f:render partial="Event/FilterInfo" arguments="{filter: filter}" />
+        <div>
+            <h1>Veranstaltungen</h1>
+            <p class="ue-intro">Suche nach Titeln, Orten, Zeiträumen und Sprache.</p>
+        </div>
+        <f:if condition="{pagination.hasKnownTotal}">
+            <p class="ue-results-count">{pagination.total} Treffer</p>
         </f:if>
     </header>
+
+    <form class="ue-filter" method="get" action="{f:uri.action(action: 'list')}">
+        <div class="ue-filter__top">
+            <div>
+                <p class="ue-filter__eyebrow">Search</p>
+                <h2 class="ue-filter__title">Events filtern</h2>
+            </div>
+            <f:if condition="{hasActiveFilters}">
+                <a class="ue-btn ue-btn--outline ue-btn--compact" href="{f:uri.action(action: 'list')}">Filter zurücksetzen</a>
+            </f:if>
+        </div>
+
+        <div class="ue-filter__grid">
+            <label class="ue-filter__field">
+                <span>Titel</span>
+                <input type="text" name="tx_uranusevents_events[search]" value="{filter.search}" placeholder="Suchbegriff eingeben">
+            </label>
+
+            <label class="ue-filter__field">
+                <span>Stadt</span>
+                <input type="text" name="tx_uranusevents_events[city]" value="{filter.city}" placeholder="z. B. Flensburg">
+            </label>
+
+            <label class="ue-filter__field">
+                <span>Startdatum</span>
+                <input type="date" name="tx_uranusevents_events[start]" value="{filter.start -> f:format.date(format: 'Y-m-d')}">
+            </label>
+
+            <label class="ue-filter__field">
+                <span>Enddatum</span>
+                <input type="date" name="tx_uranusevents_events[end]" value="{filter.end -> f:format.date(format: 'Y-m-d')}">
+            </label>
+
+            <label class="ue-filter__field">
+                <span>Sprache</span>
+                <select name="tx_uranusevents_events[language]">
+                    <option value="">Alle Sprachen</option>
+                    <f:if condition="{filter.language} == 'de'">
+                        <f:then><option value="de" selected="selected">Deutsch</option></f:then>
+                        <f:else><option value="de">Deutsch</option></f:else>
+                    </f:if>
+                    <f:if condition="{filter.language} == 'da'">
+                        <f:then><option value="da" selected="selected">Dänisch</option></f:then>
+                        <f:else><option value="da">Dänisch</option></f:else>
+                    </f:if>
+                    <f:if condition="{filter.language} == 'en'">
+                        <f:then><option value="en" selected="selected">Englisch</option></f:then>
+                        <f:else><option value="en">Englisch</option></f:else>
+                    </f:if>
+                </select>
+            </label>
+
+            <label class="ue-filter__toggle">
+                <input type="hidden" name="tx_uranusevents_events[past]" value="0">
+                <f:if condition="{filter.past}">
+                    <f:then><input type="checkbox" name="tx_uranusevents_events[past]" value="1" checked="checked"></f:then>
+                    <f:else><input type="checkbox" name="tx_uranusevents_events[past]" value="1"></f:else>
+                </f:if>
+                <span>Vergangene Events einbeziehen</span>
+            </label>
+        </div>
+
+        <div class="ue-filter__actions">
+            <button class="ue-btn" type="submit">Suche anwenden</button>
+            <f:if condition="{hasActiveFilters}">
+                <a class="ue-btn ue-btn--outline" href="{f:uri.action(action: 'list')}">Zurücksetzen</a>
+            </f:if>
+        </div>
+    </form>
+
+    <f:if condition="{hasActiveFilters}">
+        <f:then>
+            <f:render partial="Event/FilterInfo" arguments="{filter: filter}" />
+        </f:then>
+    </f:if>
 
     <f:if condition="{hasError}">
         <f:then>
